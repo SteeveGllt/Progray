@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Progray", "Progray\Progray.csproj", "{47C17C80-991B-4A96-BEFB-2865B77EB042}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47C17C80-991B-4A96-BEFB-2865B77EB042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C17C80-991B-4A96-BEFB-2865B77EB042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C17C80-991B-4A96-BEFB-2865B77EB042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C17C80-991B-4A96-BEFB-2865B77EB042}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E743E952-54DC-49AE-84E9-5263AFBD32CC}
+	EndGlobalSection
+EndGlobal
