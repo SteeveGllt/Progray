@@ -31,6 +31,7 @@ namespace Progray
         List<Marque> marques;
         List<Client> clients;
         Depot depot;
+        String Bonjour;
         
         public MainWindow()
         {
