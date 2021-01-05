@@ -111,6 +111,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Ado.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -123,12 +124,61 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="pageCreationClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageCreationDepot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageCreationMarque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageCreationMateriel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageVoirClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageVoirMarque.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageVoirMateriel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Marque.cs" />
     <Compile Include="marqueAdo.cs" />
     <Compile Include="Materiel.cs" />
     <Compile Include="materielAdo.cs" />
+    <Compile Include="pageCreationClient.xaml.cs">
+      <DependentUpon>pageCreationClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageCreationDepot.xaml.cs">
+      <DependentUpon>pageCreationDepot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageCreationMarque.xaml.cs">
+      <DependentUpon>pageCreationMarque.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageCreationMateriel.xaml.cs">
+      <DependentUpon>pageCreationMateriel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageVoirClient.xaml.cs">
+      <DependentUpon>pageVoirClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageVoirMarque.xaml.cs">
+      <DependentUpon>pageVoirMarque.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageVoirMateriel.xaml.cs">
+      <DependentUpon>pageVoirMateriel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Probleme.cs" />
     <Compile Include="problemeAdo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

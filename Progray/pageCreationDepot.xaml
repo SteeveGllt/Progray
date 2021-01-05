@@ -1,0 +1,29 @@
+﻿<Page x:Class="Progray.pageCreationDepot"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Progray"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pageCreationDepot">
+
+    <Grid>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="229" Margin="-1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="801" Panel.ZIndex="-1"/>
+        <Label x:Name="lblMateriel" Content="Matériel" HorizontalAlignment="Left" Margin="278,43,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold"/>
+        <Label x:Name="lblMarque" Content="Marque" HorizontalAlignment="Left" Margin="516,43,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold"/>
+        <Label Content="Délai" HorizontalAlignment="Left" Margin="33,106,0,0" VerticalAlignment="Top" Width="60" FontWeight="Bold"/>
+        <TextBox x:Name="tbxDelai" HorizontalAlignment="Left" Height="23" Margin="97,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244"/>
+        <ComboBox x:Name="cbxMateriel" HorizontalAlignment="Left" Margin="354,43,0,0" VerticalAlignment="Top" Width="113" SelectionChanged="cbxMateriel_SelectionChanged"/>
+        <ComboBox x:Name="cbxMarque" HorizontalAlignment="Left" Margin="580,43,0,0" VerticalAlignment="Top" Width="113" SelectionChanged="cbxMarque_SelectionChanged"/>
+        <ComboBox x:Name="cbxClient" HorizontalAlignment="Left" Margin="107,46,0,0" VerticalAlignment="Top" Width="113" SelectionChanged="cbxClient_SelectionChanged"/>
+        <Label Content="Client" HorizontalAlignment="Left" Margin="33,40,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="47"/>
+        <Label x:Name="lblChoixClient" Content="" HorizontalAlignment="Left" Margin="107,73,0,0" VerticalAlignment="Top" Width="113"/>
+        <Button x:Name="btnValide" Content="Valider le dépôt" HorizontalAlignment="Left" Margin="677,165,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click"/>
+        <TextBox x:Name="tbxChoixClient" HorizontalAlignment="Left" Height="23" Margin="107,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Visibility="Hidden"/>
+        <TextBox x:Name="tbxChoixMateriel" HorizontalAlignment="Left" Height="23" Margin="354,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Visibility="Hidden"/>
+        <TextBox x:Name="tbxChoixMarque" HorizontalAlignment="Left" Height="23" Margin="580,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" Visibility="Hidden"/>
+        <ComboBox x:Name="cbxDelai" HorizontalAlignment="Left" Margin="354,108,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxDelai_SelectionChanged"/>
+
+    </Grid>
+</Page>

@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using Application = System.Windows.Forms.Application;
 using Path = System.IO.Path;
 using Paragraph = iTextSharp.text.Paragraph;
+using Control = System.Windows.Controls.Control;
 
 namespace Progray
 {
@@ -56,14 +57,19 @@ namespace Progray
             //}
             //dgMarque.ItemsSource = marque;
 
-            gridEntête.Visibility = Visibility.Visible;
-            gridMenu.Visibility = Visibility.Visible;
-            gridPage.Visibility = Visibility.Hidden;
-            gridMarque.Visibility = Visibility.Hidden;
-            gridCreerMateriel.Visibility = Visibility.Hidden;
-            gridClient.Visibility = Visibility.Hidden;
-            gridProbleme.Visibility = Visibility.Hidden;
-            gridDepot.Visibility = Visibility.Hidden;
+            //gridEntête.Visibility = Visibility.Visible;
+            //gridMenu.Visibility = Visibility.Visible;
+            //gridPage.Visibility = Visibility.Hidden;
+            //gridMarque.Visibility = Visibility.Hidden;
+            //gridCreerMateriel.Visibility = Visibility.Hidden;
+            //gridClient.Visibility = Visibility.Hidden;
+            //gridProbleme.Visibility = Visibility.Hidden;
+            //gridDepot.Visibility = Visibility.Hidden;
+
+           
+
+
+
         }
 
         
@@ -91,16 +97,16 @@ namespace Progray
             gridMarque.Visibility = Visibility.Visible;
         }
 
-        private void btnTypeMateriel_Click(object sender, RoutedEventArgs e)
-        {
-            Materiel m = new Materiel(0, tbxTypeMateriel.Text);
-            //on ajoute le nouveau client en base de données
-            materielAdo.createMateriel(m);
+        //private void btnTypeMateriel_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Materiel m = new Materiel(0, tbxTypeMateriel.Text);
+        //    //on ajoute le nouveau client en base de données
+        //    materielAdo.createMateriel(m);
 
-            gridCreerMateriel.Visibility = Visibility.Hidden;
-            gridMenu.Visibility = Visibility.Visible;
-            gridEntête.Visibility = Visibility.Visible;
-        }
+        //    gridCreerMateriel.Visibility = Visibility.Hidden;
+        //    gridMenu.Visibility = Visibility.Visible;
+        //    gridEntête.Visibility = Visibility.Visible;
+        //}
 
         private void btnRetourMateriel_Click(object sender, RoutedEventArgs e)
         {
@@ -109,16 +115,16 @@ namespace Progray
             gridEntête.Visibility = Visibility.Visible;
         }
 
-        private void btnCreerMarque1_Click(object sender, RoutedEventArgs e)
-        {
-            Marque m = new Marque(0, tbxMarque.Text);
-            //on ajoute la nouvelle marque en base de données
-            marqueAdo.createMarque(m);
+        //private void btnCreerMarque1_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Marque m = new Marque(0, tbxMarque.Text);
+        //    //on ajoute la nouvelle marque en base de données
+        //    marqueAdo.createMarque(m);
 
-            gridMarque.Visibility = Visibility.Hidden;
-            gridMenu.Visibility = Visibility.Visible;
-            gridEntête.Visibility = Visibility.Visible;
-        }
+        //    gridMarque.Visibility = Visibility.Hidden;
+        //    gridMenu.Visibility = Visibility.Visible;
+        //    gridEntête.Visibility = Visibility.Visible;
+        //}
 
         private void btnRetourMarque_Click(object sender, RoutedEventArgs e)
         {
@@ -158,7 +164,7 @@ namespace Progray
         //Création du client + Retour menu
         private void btnValideClient_Click(object sender, RoutedEventArgs e)
         {
-            Client c = new Client(0, tbxTitre.Text, tbxNom.Text, tbxPrenom.Text, tbxAdresse.Text, tbxCp.Text, tbxVille.Text, Convert.ToInt32(tbxTelephone.Text), Convert.ToInt32(tbxMobile.Text), tbxMail.Text, tbxEntreprise.Text);
+            Client c = new Client(0, tbxTitre.Text, tbxNom.Text, tbxPrenom.Text, tbxAdresse.Text, tbxCp.Text, tbxVille.Text, tbxTelephone.Text, tbxMobile.Text, tbxMail.Text, tbxEntreprise.Text);
             //on ajoute le nouveau client en base de données
             clientAdo.create(c);
 
@@ -206,7 +212,7 @@ namespace Progray
         {
             // comme pour le datagrid on récupère la marque sélectionné
             Client client = (Client)(cbxClient.SelectedItem);
-            tbxChoixClient.Text = client.Titre + " | " + client.Nom + " | " + client.Prenom + " | " + client.Adresse + " | " + client.Cp + " | " + client.Ville + " | " + client.Telephone + " | " + client.Mobile + " | " + client.AdresseMail + " | " + client.Entreprise;
+            tbxChoixClient.Text = client.Titre + " | " + client.Nom + " | " + client.Prenom + " | " + client.Adresse + " | " + client.Cp + " | " + client.Ville + " | " + client.Telephone + " | " + client.Mobile + " | " + client.AdresseMail + " | " + client.Statut;
         }
 
         //Bouton retour de la fenêtre dépôt
@@ -275,6 +281,41 @@ namespace Progray
 
             document.Close();
 
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageVoirClient();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageCreationClient();
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageCreationMateriel();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageVoirMateriel();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageVoirMarque();
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageCreationMarque();
+        }
+
+        private void creerundepot_Click(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageCreationDepot();
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿<Page x:Class="Progray.pageCreationMateriel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Progray"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="pageCreationMateriel">
+
+    <Grid>
+        <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="102,44,0,0" VerticalAlignment="Top" Height="29" Width="110" FontWeight="Bold"/>
+        <TextBox x:Name="tbxTypeMateriel" HorizontalAlignment="Left" Height="21" Margin="238,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="btnTypeMateriel" Content="Créer" HorizontalAlignment="Left" Margin="264,96,0,0" VerticalAlignment="Top" Width="80" Click="btnTypeMateriel_Click" Height="27"/>
+
+    </Grid>
+</Page>

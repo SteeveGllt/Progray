@@ -11,8 +11,9 @@ namespace Progray
         int IDMATERIEL;
         String TYPEMATERIEL;
 
-        public string TypeMateriel { get => TYPEMATERIEL; set => TYPEMATERIEL = value; }
         public int IdMateriel { get => IDMATERIEL; set => IDMATERIEL = value; }
+        public string TypeMateriel { get => TYPEMATERIEL; set => TYPEMATERIEL = value; }
+        
 
         public Materiel(int unId, String unType)
         {

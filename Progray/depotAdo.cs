@@ -7,36 +7,9 @@ using System.Threading.Tasks;
 
 namespace Progray
 {
-    class depotAdo
+    class depotAdo : Ado
     {
-        static MySqlConnection conn;
-
-        private static void open()
-        {
-
-            string cs = @"server=localhost;userid=root;password=;database=progray";
-            try
-            {
-                conn = new MySqlConnection(cs);
-                conn.Open();
-                Console.WriteLine("Connexion ouverte");
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-
-            }
-        }
-        private static void close()
-        {
-            if (conn != null)
-            {
-                conn.Close();
-                Console.WriteLine("Connexion fermée");
-                
-            }
-        }
+   
         public static Depot createDepot(Depot d)
         {
             long id = 0;
@@ -59,12 +32,9 @@ namespace Progray
                 close();
                 
             }   
-          
-
             catch (MySqlException ex)
             {
                 Console.WriteLine(ex.Message);
-
             }
             return d;
 

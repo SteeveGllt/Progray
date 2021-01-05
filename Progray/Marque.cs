@@ -11,8 +11,9 @@ namespace Progray
         int IDMARQUE;
         String NOM;
 
-        public string Nom { get => NOM; set => NOM = value; }
         public int idMarque { get => IDMARQUE; set => IDMARQUE = value; }
+        public string Nom { get => NOM; set => NOM = value; }
+        
 
         public Marque(int unId, String unNom)
         {

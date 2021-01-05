@@ -7,35 +7,9 @@ using System.Threading.Tasks;
 
 namespace Progray
 {
-    class clientAdo
+    public class clientAdo : Ado
     {
-        static MySqlConnection conn;
-
-        private static void open()
-        {
-
-            string cs = @"server=localhost;userid=root;password=;database=progray";
-            try
-            {
-                conn = new MySqlConnection(cs);
-                conn.Open();
-                Console.WriteLine("Connexion ouverte");
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-
-            }
-        }
-        private static void close()
-        {
-            if (conn != null)
-            {
-                conn.Close();
-                Console.WriteLine("Connexion fermée");
-            }
-        }
+     
         public static void create(Client client)
         {
 
@@ -44,7 +18,7 @@ namespace Progray
                 open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO client(IDCLIENT, TITRE,NOM,PRENOM,ADRESSE,CP,VILLE,TELEPHONE,MOBILE,ADRESSE_MAIL, ENTREPRISE) VALUES(0, @TITRE, @NOM, @PRENOM, @ADRESSE, @CP, @VILLE, @TELEPHONE, @MOBILE, @ADRESSE_MAIL, @ENTREPRISE)";
+                cmd.CommandText = "INSERT INTO client(IDCLIENT, TITRE,NOM,PRENOM,ADRESSE,CP,VILLE,TELEPHONE,MOBILE,ADRESSE_MAIL, STATUT) VALUES(0, @TITRE, @NOM, @PRENOM, @ADRESSE, @CP, @VILLE, @TELEPHONE, @MOBILE, @ADRESSE_MAIL, @STATUT)";
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@TITRE", client.Titre);
                 cmd.Parameters.AddWithValue("@NOM", client.Nom);
@@ -55,7 +29,7 @@ namespace Progray
                 cmd.Parameters.AddWithValue("@TELEPHONE", client.Telephone);
                 cmd.Parameters.AddWithValue("@MOBILE", client.Mobile);
                 cmd.Parameters.AddWithValue("@ADRESSE_MAIL", client.AdresseMail);
-                cmd.Parameters.AddWithValue("@ENTREPRISE", client.Entreprise);
+                cmd.Parameters.AddWithValue("@STATUT", client.Statut);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Client crée");
                 close();
@@ -78,11 +52,12 @@ namespace Progray
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
                 while (reader.Read())
                 {
-                    Client client = new Client((int)reader["IDCLIENT"], (String)reader["TITRE"], (String)reader["NOM"], (String)reader["PRENOM"], (String)reader["ADRESSE"], (String)reader["CP"], (String)reader["VILLE"], (int)reader["TELEPHONE"], (int)reader["MOBILE"], (String)reader["ADRESSE_MAIL"], (String)reader["ENTREPRISE"]);
+                    Client client = new Client((Int32)reader["IDCLIENT"],(String)reader["TITRE"], (String)reader["NOM"], (String)reader["PRENOM"], (String)reader["ADRESSE"], (String)reader["CP"], (String)reader["VILLE"], (String)reader["TELEPHONE"], (String)reader["MOBILE"], (String)reader["ADRESSE_MAIL"], (String)reader["STATUT"]);
                     clients.Add(client);
                 }
                 reader.Close();
                 return clients;
+                
             }
             catch (Exception ex)
             {

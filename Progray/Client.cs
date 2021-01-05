@@ -15,25 +15,25 @@ namespace Progray
         String ADRESSE;
         String CP;
         String VILLE;
-        int TELEPHONE;
-        int MOBILE;
+        String TELEPHONE;
+        String MOBILE;
         String ADRESSE_MAIL;
-        String ENTREPRISE;
-      
+        String STATUT;
 
+        public int idClient { get => IDCLIENT; set => IDCLIENT = value; }
         public string Titre { get => TITRE; set => TITRE = value; }
         public string Nom { get => NOM; set => NOM = value; }
         public string Prenom { get => PRENOM; set => PRENOM = value; }
         public string Adresse { get => ADRESSE; set => ADRESSE = value; }
         public string Cp { get => CP; set => CP = value; }
         public string Ville { get => VILLE; set => VILLE = value; }
-        public int Telephone { get => TELEPHONE; set => TELEPHONE = value; }
-        public int Mobile { get => MOBILE; set => MOBILE = value; }
         public string AdresseMail { get => ADRESSE_MAIL; set => ADRESSE_MAIL = value; }
-        public int idClient { get => IDCLIENT; set => IDCLIENT = value; }
-        public string Entreprise { get => ENTREPRISE; set => ENTREPRISE = value; }
+        public string Telephone { get => TELEPHONE; set => TELEPHONE = value; }
+        public string Mobile { get => MOBILE; set => MOBILE = value; }
+        public string Statut { get => STATUT; set => STATUT = value; }
+        
 
-        public Client(int unId, String unTitre, String unNom, String unPrenom, String uneAdresse, String unCP, String uneVille, int unTelephone, int unMobile, String uneAdresseMail, String uneEntreprise)
+        public Client(int unId, String unTitre, String unNom, String unPrenom, String uneAdresse, String unCP, String uneVille, string unTelephone, string unMobile, String uneAdresseMail, String unStatut)
         {
             this.IDCLIENT = unId;
             this.TITRE = unTitre;
@@ -45,13 +45,13 @@ namespace Progray
             this.TELEPHONE = unTelephone;
             this.MOBILE = unMobile;
             this.ADRESSE_MAIL = uneAdresseMail;
-            this.ENTREPRISE = uneEntreprise;
+            this.STATUT = unStatut;
 
         }
         public Client(String unNom, String unPrenom)
         {
             this.NOM = unNom;
-            this.PRENOM = unPrenom; 
+            this.PRENOM = unPrenom;
         }
         public Client(int unId)
         {

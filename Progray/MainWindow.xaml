@@ -8,28 +8,29 @@
         Title="MainWindow" Height="750" Width="1250">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="334*"/>
-            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="1241*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="gridPage" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" Visibility="Visible" d:IsHidden="True">
+        <Image x:Name="progray" Margin="536,10,537,555" Source="progray.jpg" Stretch="Fill" RenderTransformOrigin="3.612,1.039"/>
+
+        <Grid x:Name="gridPage" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden" d:IsHidden="True">
             <Button x:Name="btnImprimer" Content="Imprimer" HorizontalAlignment="Left" Height="23" Margin="1116,668,0,0" VerticalAlignment="Top" Width="97" Click="btnImprimer_Click"/>
             <Rectangle x:Name="rectangle1" Fill="White" HorizontalAlignment="Left" Height="180" Margin="201,100,0,0" Stroke="Black" VerticalAlignment="Top" Width="1012"/>
             <Label x:Name="lblTitreDocument" Content="Titre du document" HorizontalAlignment="Left" Margin="879,56,0,0" VerticalAlignment="Top" Width="125" FontWeight="Bold"/>
             <Rectangle x:Name="rectTarif" Fill="White" HorizontalAlignment="Left" Height="212" Margin="201,309,0,0" Stroke="Black" VerticalAlignment="Top" Width="1012"/>
             <Label x:Name="lblTarif" Content="Tarif du 05/06/2015" HorizontalAlignment="Left" Margin="35,321,0,0" VerticalAlignment="Top" Width="125" FontWeight="Bold"/>
-            <Image Margin="10,10,1106,601" Source="progray.jpg" Stretch="Fill"/>
             <Button x:Name="btnRetour" Content="Retour" HorizontalAlignment="Left" Margin="10,672,0,0" VerticalAlignment="Top" Width="75" Click="btnRetour_Click"/>
             <TextBox x:Name="tbxTarif" HorizontalAlignment="Left" Height="145" Margin="213,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="990"/>
             <TextBox x:Name="tbxTitrePDF" HorizontalAlignment="Left" Height="23" Margin="1030,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="tbxTarif2" HorizontalAlignment="Left" Height="187" Margin="213,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="990"/>
         </Grid>
-        <Grid x:Name="gridProbleme" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" d:IsHidden="True">
+        <Grid x:Name="gridProbleme" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
             <Button x:Name="btnSuivantProbleme" Content="Suivant" HorizontalAlignment="Left" Margin="1096,398,0,0" VerticalAlignment="Top" Width="95" Click="btnClient_Click"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="1,193,-1,0" Stroke="Black" VerticalAlignment="Top" Width="1223" Panel.ZIndex="-3"/>
             <Label x:Name="lblProbleme" Content="Problème(s)" HorizontalAlignment="Left" Height="29" Margin="33,291,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold"/>
             <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="219" Margin="175,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="898"/>
         </Grid>
-        <Grid x:Name="gridCreerMateriel" HorizontalAlignment="Left" Height="619" Margin="10,92,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" Visibility="Visible" d:IsHidden="True">
+        <Grid x:Name="gridCreerMateriel" HorizontalAlignment="Left" Height="619" Margin="10,92,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden" d:IsHidden="True">
             <Rectangle HorizontalAlignment="Left" Height="474" Margin="299,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="648" Panel.ZIndex="-1">
                 <Rectangle.Fill>
                     <ImageBrush/>
@@ -37,11 +38,11 @@
             </Rectangle>
             <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="421,209,0,0" VerticalAlignment="Top" Height="30" Width="103" FontWeight="Bold"/>
             <TextBox x:Name="tbxTypeMateriel" HorizontalAlignment="Left" Height="23" Margin="556,216,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="btnTypeMateriel" Content="Créer" HorizontalAlignment="Left" Margin="579,260,0,0" VerticalAlignment="Top" Width="75" Click="btnTypeMateriel_Click"/>
+            <Button x:Name="btnTypeMateriel" Content="Créer" HorizontalAlignment="Left" Margin="579,260,0,0" VerticalAlignment="Top" Width="75"/>
             <Image Margin="535,52,531,432" Source="progray.jpg" Stretch="Fill" Panel.ZIndex="-1"/>
             <Button x:Name="btnRetourMateriel" Content="Retour" HorizontalAlignment="Left" Margin="318,475,0,0" VerticalAlignment="Top" Width="75" Click="btnRetourMateriel_Click"/>
         </Grid>
-        <Grid x:Name="gridMarque" HorizontalAlignment="Left" Height="619" Margin="10,92,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" Visibility="Visible" d:IsHidden="True">
+        <Grid x:Name="gridMarque" HorizontalAlignment="Left" Height="619" Margin="10,92,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden" d:IsHidden="True">
             <Rectangle HorizontalAlignment="Left" Height="469" Margin="299,40,0,0" Stroke="Black" VerticalAlignment="Top" Width="644" Panel.ZIndex="-1">
                 <Rectangle.Fill>
                     <ImageBrush/>
@@ -49,11 +50,11 @@
             </Rectangle>
             <Label Content="Marque" HorizontalAlignment="Left" Margin="463,212,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold"/>
             <TextBox x:Name="tbxMarque" HorizontalAlignment="Left" Height="23" Margin="561,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="btnCreerMarque1" Content="Créer" HorizontalAlignment="Left" Margin="584,254,0,0" VerticalAlignment="Top" Width="75" Click="btnCreerMarque1_Click"/>
+            <Button x:Name="btnCreerMarque1" Content="Créer" HorizontalAlignment="Left" Margin="584,254,0,0" VerticalAlignment="Top" Width="75"/>
             <Image Margin="529,53,542,439" Source="progray.jpg" Stretch="Fill"/>
             <Button x:Name="btnRetourMarque" Content="Retour" HorizontalAlignment="Left" Margin="319,477,0,0" VerticalAlignment="Top" Width="75" Click="btnRetourMarque_Click"/>
         </Grid>
-        <Grid x:Name="gridMenu" HorizontalAlignment="Left" Height="593" Margin="0,85,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" d:IsHidden="True">
+        <Grid x:Name="gridMenu" HorizontalAlignment="Left" Height="593" Margin="0,85,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="397*"/>
                 <ColumnDefinition Width="826*"/>
@@ -91,11 +92,11 @@
                 <Image Height="101" Source="client.png" Stretch="Fill" Width="110"/>
             </Button>
         </Grid>
-        <Grid x:Name="gridEntête" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" d:IsHidden="True">
+        <Grid x:Name="gridEntête" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
             <Label x:Name="lblEntete" Content="Pro Gray Informatique" HorizontalAlignment="Left" Height="81" Margin="444,10,0,0" VerticalAlignment="Top" Width="340" FontSize="30" FontWeight="Bold"/>
             <Image Margin="10,0,1107.8,9.2" Source="progray.jpg" Stretch="Fill"/>
         </Grid>
-        <Grid x:Name="gridDepot" HorizontalAlignment="Left" Height="593" Margin="10,118,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2">
+        <Grid x:Name="gridDepot" HorizontalAlignment="Left" Height="593" Margin="10,118,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="207" Margin="200,83,0,0" Stroke="Black" VerticalAlignment="Top" Width="847" Panel.ZIndex="-1"/>
             <Label x:Name="lblMateriel" Content="Matériel" HorizontalAlignment="Left" Margin="495,126,0,0" VerticalAlignment="Top" Width="80" FontWeight="Bold"/>
             <Label x:Name="lblMarque" Content="Marque" HorizontalAlignment="Left" Margin="746,126,0,0" VerticalAlignment="Top" Width="90" FontWeight="Bold"/>
@@ -112,7 +113,7 @@
             <TextBox x:Name="tbxChoixMateriel" HorizontalAlignment="Left" Height="23" Margin="575,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
             <TextBox x:Name="tbxChoixMarque" HorizontalAlignment="Left" Height="23" Margin="814,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Visibility="Hidden"/>
         </Grid>
-        <Grid x:Name="gridClient" HorizontalAlignment="Left" Height="593" Margin="10,118,0,0" VerticalAlignment="Top" Width="1223" Grid.ColumnSpan="2" d:IsHidden="True">
+        <Grid x:Name="gridClient" HorizontalAlignment="Left" Height="593" Margin="10,118,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
             <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="338,15,0,0" VerticalAlignment="Top" Width="84" FontWeight="Bold"/>
             <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="530,10,0,0" VerticalAlignment="Top" Width="88" FontWeight="Bold"/>
             <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="711,15,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold"/>
@@ -137,6 +138,22 @@
             <Label Content="Entreprise" HorizontalAlignment="Left" Margin="636,267,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxEntreprise" HorizontalAlignment="Left" Height="23" Margin="729,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="57" Margin="0,169,0,0" VerticalAlignment="Top" Width="1241">
+            <MenuItem x:Name="gestiondesclients" Header="Gestion de client" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18">
+                <MenuItem Header="Voir tous les clients" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click"/>
+                <MenuItem Header="Créer un client" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_1"/>
+            </MenuItem>
+            <MenuItem x:Name="gestiondesmateriels" Header="Gestion des matériels" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18">
+                <MenuItem Header="Voir tous les matériels" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_3"/>
+                <MenuItem Header="Créer un matériel" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_2"/>
+            </MenuItem>
+            <MenuItem x:Name="gestiondesmarques" Header="Gestion des marques" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18">
+                <MenuItem Header="Voir toutes les marques" HorizontalAlignment="Left" Height="75" Width="295" Click="MenuItem_Click_4"/>
+                <MenuItem Header="Créer une marque" HorizontalAlignment="Left" Height="76" Width="295" Click="MenuItem_Click_5"/>
+            </MenuItem>
+            <MenuItem x:Name="creerundepot" Header="Créer un dépôt" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18" Click="creerundepot_Click"/>
+        </Menu>
+        <Frame x:Name="frame" Content="" HorizontalAlignment="Left" Height="485" Margin="10,226,0,0" VerticalAlignment="Top" Width="1222"/>
 
     </Grid>
 </Window>
