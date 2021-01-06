@@ -71,6 +71,9 @@ namespace Progray
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
             Depot d = new Depot(marque, client, materiel, cbxDelai.Text);
             depot = depotAdo.createDepot(d);
+
+            Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
+            problemeAdo.createProbleme(probleme);
         }
     }
 }

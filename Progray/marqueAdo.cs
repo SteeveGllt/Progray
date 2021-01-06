@@ -18,9 +18,9 @@ namespace Progray
                 open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO marque(NOM) VALUES(@NOM)";
+                cmd.CommandText = "INSERT INTO marque(NOMMARQUE) VALUES(@NOMMARQUE)";
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@NOM", marque.Nom);
+                cmd.Parameters.AddWithValue("@NOMMARQUE", marque.Nom);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Marque crée");
                 close();
@@ -43,7 +43,7 @@ namespace Progray
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
                 while (reader.Read())
                 {
-                    Marque marque = new Marque((int)reader["IDMARQUE"],(String)reader["NOM"]);
+                    Marque marque = new Marque((int)reader["IDMARQUE"],(String)reader["NOMMARQUE"]);
                     marques.Add(marque);
                 }
                 reader.Close();
@@ -59,6 +59,32 @@ namespace Progray
             {
                 close();
             }
+        }
+
+        public static void update(string unNom, int unId)
+        {
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE marque SET NOMMARQUE = @NOMMARQUE WHERE IDMARQUE = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.Parameters.AddWithValue("@NOMMARQUE", unNom);
+            cmd.ExecuteNonQuery();
+            close();
+        }
+
+        public static void delete(int unId)
+        {
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "DELETE FROM marque WHERE IDMARQUE = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Marque supprimée");
+            close();
         }
     }
 }

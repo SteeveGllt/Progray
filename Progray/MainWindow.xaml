@@ -24,7 +24,7 @@
             <TextBox x:Name="tbxTitrePDF" HorizontalAlignment="Left" Height="23" Margin="1030,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox x:Name="tbxTarif2" HorizontalAlignment="Left" Height="187" Margin="213,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="990"/>
         </Grid>
-        <Grid x:Name="gridProbleme" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" d:IsHidden="True" Visibility="Hidden">
+        <Grid x:Name="gridProbleme" HorizontalAlignment="Left" Height="701" Margin="10,10,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden" d:IsHidden="True">
             <Button x:Name="btnSuivantProbleme" Content="Suivant" HorizontalAlignment="Left" Margin="1096,398,0,0" VerticalAlignment="Top" Width="95" Click="btnClient_Click"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="257" Margin="1,193,-1,0" Stroke="Black" VerticalAlignment="Top" Width="1223" Panel.ZIndex="-3"/>
             <Label x:Name="lblProbleme" Content="Problème(s)" HorizontalAlignment="Left" Height="29" Margin="33,291,0,0" VerticalAlignment="Top" Width="96" FontWeight="Bold"/>
@@ -151,7 +151,10 @@
                 <MenuItem Header="Voir toutes les marques" HorizontalAlignment="Left" Height="75" Width="295" Click="MenuItem_Click_4"/>
                 <MenuItem Header="Créer une marque" HorizontalAlignment="Left" Height="76" Width="295" Click="MenuItem_Click_5"/>
             </MenuItem>
-            <MenuItem x:Name="creerundepot" Header="Créer un dépôt" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18" Click="creerundepot_Click"/>
+            <MenuItem x:Name="gestiondesdepots" Header="Gestion des dépôts" Height="57" Width="300" HorizontalAlignment="Center" FontSize="18">
+                <MenuItem Header="Voir tous les dépôts" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_7"/>
+                <MenuItem Header="Créer un dépôt" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_6"/>
+            </MenuItem>
         </Menu>
         <Frame x:Name="frame" Content="" HorizontalAlignment="Left" Height="485" Margin="10,226,0,0" VerticalAlignment="Top" Width="1222"/>
 

@@ -13,8 +13,11 @@ namespace Progray
 
         public int IdMateriel { get => IDMATERIEL; set => IDMATERIEL = value; }
         public string TypeMateriel { get => TYPEMATERIEL; set => TYPEMATERIEL = value; }
-        
 
+        public Materiel()
+        {
+           
+        }
         public Materiel(int unId, String unType)
         {
             this.IDMATERIEL = unId;

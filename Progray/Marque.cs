@@ -13,7 +13,8 @@ namespace Progray
 
         public int idMarque { get => IDMARQUE; set => IDMARQUE = value; }
         public string Nom { get => NOM; set => NOM = value; }
-        
+
+        public Marque(){ }
 
         public Marque(int unId, String unNom)
         {

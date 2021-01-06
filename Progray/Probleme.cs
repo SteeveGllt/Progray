@@ -15,7 +15,9 @@ namespace Progray
         public int idProbleme { get => IDPROBLEME; set => IDPROBLEME = value; }
         public string Description { get => DESCRIPTION; set => DESCRIPTION = value; }
         public Depot Depot { get => depot; set => depot = value; }
-
+        public Probleme()
+        {
+        }
         public Probleme(int unId, Depot unDepot, String uneDescription)
         {
             this.IDPROBLEME = unId;

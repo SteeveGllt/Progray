@@ -71,5 +71,51 @@ namespace Progray
             }
         }
 
+        public static void update(string unTitre, string unNom, string unPrenom, string uneAdresse, string unCP, string uneVille, string unTelephone, string unMobile, string uneAdresseMail, string unStatut, int unId)
+        {
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE client SET TITRE = @TITRE, NOM = @NOM, PRENOM = @PRENOM, ADRESSE = @ADRESSE, CP = @CP, VILLE = @VILLE, TELEPHONE = @TELEPHONE, MOBILE = @MOBILE, ADRESSE_MAIL = @ADRESSE_MAIL, STATUT = @STATUT WHERE IDCLIENT = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.Parameters.AddWithValue("@TITRE", unTitre);
+            cmd.Parameters.AddWithValue("@NOM", unNom);
+            cmd.Parameters.AddWithValue("@PRENOM", unPrenom);
+            cmd.Parameters.AddWithValue("@ADRESSE", uneAdresse);
+            cmd.Parameters.AddWithValue("@CP", unCP);
+            cmd.Parameters.AddWithValue("@VILLE", uneVille);
+            cmd.Parameters.AddWithValue("@TELEPHONE", unTelephone);
+            cmd.Parameters.AddWithValue("@MOBILE", unMobile);
+            cmd.Parameters.AddWithValue("@ADRESSE_MAIL", uneAdresseMail);
+            cmd.Parameters.AddWithValue("@STATUT", unStatut);
+            cmd.ExecuteNonQuery();
+            close();
+        }
+
+        public static void delete(int unId)
+        {
+            try
+            {
+                open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "DELETE FROM client WHERE IDCLIENT = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Client supprimé");
+            close();
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche des erreurs
+                Console.WriteLine(ex.Message);
+             
+            }
+
+        }
+
     }
 }

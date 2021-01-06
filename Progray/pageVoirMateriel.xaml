@@ -9,7 +9,14 @@
       Title="pageVoirMateriel">
 
     <Grid>
-        <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="284" VerticalAlignment="Top" Width="255" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="0,10,0,0"/>
+        <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="225" VerticalAlignment="Top" Width="214" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="64,10,522,0"/>
+        <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="520,67,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+        <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="520,129,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        <Grid x:Name="gridMateriel" HorizontalAlignment="Left" Height="120" Margin="428,190,0,0" VerticalAlignment="Top" Width="320">
+            <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbxType" HorizontalAlignment="Left" Height="23" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="232,84,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>
+        </Grid>
 
     </Grid>
 </Page>

@@ -144,6 +144,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="pageVoirDepot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="pageVoirMarque.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +176,9 @@
     </Compile>
     <Compile Include="pageVoirClient.xaml.cs">
       <DependentUpon>pageVoirClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageVoirDepot.xaml.cs">
+      <DependentUpon>pageVoirDepot.xaml</DependentUpon>
     </Compile>
     <Compile Include="pageVoirMarque.xaml.cs">
       <DependentUpon>pageVoirMarque.xaml</DependentUpon>
@@ -209,18 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="progray.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Dépannage-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo-microsoft.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img-top-depannage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="client.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

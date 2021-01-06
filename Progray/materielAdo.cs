@@ -7,35 +7,10 @@ using System.Threading.Tasks;
 
 namespace Progray
 {
-    class materielAdo
+    class materielAdo : Ado
     {
-        static MySqlConnection conn;
-
-        private static void open()
-        {
-
-            string cs = @"server=localhost;userid=root;password=;database=progray";
-            try
-            {
-                conn = new MySqlConnection(cs);
-                conn.Open();
-                Console.WriteLine("Connexion ouverte");
-
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-
-            }
-        }
-        private static void close()
-        {
-            if (conn != null)
-            {
-                conn.Close();
-                Console.WriteLine("Connexion fermée");
-            }
-        }
+  
+      
         public static void createMateriel(Materiel materiel)
         {
 
@@ -85,6 +60,31 @@ namespace Progray
             {
                 close();
             }
+        }
+        public static void update(string unType, int unId)
+        {
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE materiel SET TYPEMATERIEL = @TYPEMATERIEL WHERE IDMATERIEL = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.Parameters.AddWithValue("@TYPEMATERIEL", unType);
+            cmd.ExecuteNonQuery();
+            close();
+        }
+
+        public static void delete(int unId)
+        {
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "DELETE FROM materiel WHERE IDMATERIEL = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Matériel supprimé");
+            close();
         }
     }
 }

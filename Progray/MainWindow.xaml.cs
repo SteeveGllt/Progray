@@ -66,7 +66,7 @@ namespace Progray
             //gridProbleme.Visibility = Visibility.Hidden;
             //gridDepot.Visibility = Visibility.Hidden;
 
-           
+
 
 
 
@@ -97,16 +97,16 @@ namespace Progray
             gridMarque.Visibility = Visibility.Visible;
         }
 
-        //private void btnTypeMateriel_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Materiel m = new Materiel(0, tbxTypeMateriel.Text);
-        //    //on ajoute le nouveau client en base de données
-        //    materielAdo.createMateriel(m);
+        private void btnTypeMateriel_Click(object sender, RoutedEventArgs e)
+        {
+            Materiel m = new Materiel(0, tbxTypeMateriel.Text);
+            //on ajoute le nouveau client en base de données
+            materielAdo.createMateriel(m);
 
-        //    gridCreerMateriel.Visibility = Visibility.Hidden;
-        //    gridMenu.Visibility = Visibility.Visible;
-        //    gridEntête.Visibility = Visibility.Visible;
-        //}
+            gridCreerMateriel.Visibility = Visibility.Hidden;
+            gridMenu.Visibility = Visibility.Visible;
+            gridEntête.Visibility = Visibility.Visible;
+        }
 
         private void btnRetourMateriel_Click(object sender, RoutedEventArgs e)
         {
@@ -115,16 +115,16 @@ namespace Progray
             gridEntête.Visibility = Visibility.Visible;
         }
 
-        //private void btnCreerMarque1_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Marque m = new Marque(0, tbxMarque.Text);
-        //    //on ajoute la nouvelle marque en base de données
-        //    marqueAdo.createMarque(m);
+        private void btnCreerMarque1_Click(object sender, RoutedEventArgs e)
+        {
+            Marque m = new Marque(0, tbxMarque.Text);
+            //on ajoute la nouvelle marque en base de données
+            marqueAdo.createMarque(m);
 
-        //    gridMarque.Visibility = Visibility.Hidden;
-        //    gridMenu.Visibility = Visibility.Visible;
-        //    gridEntête.Visibility = Visibility.Visible;
-        //}
+            gridMarque.Visibility = Visibility.Hidden;
+            gridMenu.Visibility = Visibility.Visible;
+            gridEntête.Visibility = Visibility.Visible;
+        }
 
         private void btnRetourMarque_Click(object sender, RoutedEventArgs e)
         {
@@ -313,9 +313,14 @@ namespace Progray
             frame.Content = new pageCreationMarque();
         }
 
-        private void creerundepot_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click_6(object sender, RoutedEventArgs e)
         {
             frame.Content = new pageCreationDepot();
+        }
+
+        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageVoirDepot();
         }
     }
 }

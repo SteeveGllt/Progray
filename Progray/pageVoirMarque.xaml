@@ -9,7 +9,14 @@
       Title="pageVoirMarque">
 
     <Grid>
-        <DataGrid x:Name="dgVoirMarque" HorizontalAlignment="Center" Height="172" VerticalAlignment="Top" Width="223" Margin="0,10,0,0" SelectionChanged="dgVoirMarque_SelectionChanged"/>
+        <DataGrid x:Name="dgVoirMarque" HorizontalAlignment="Center" Height="172" VerticalAlignment="Top" Width="154" Margin="160,10,486,0" SelectionChanged="dgVoirMarque_SelectionChanged"/>
+        <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="581,49,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+        <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="581,104,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        <Grid x:Name="gridMarque" HorizontalAlignment="Left" Height="172" Margin="348,154,0,0" VerticalAlignment="Top" Width="308">
+            <Label Content="Nom de la marque :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbxNomMarque" HorizontalAlignment="Left" Height="23" Margin="130,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Valider" HorizontalAlignment="Left" Margin="112,141,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        </Grid>
 
     </Grid>
 </Page>

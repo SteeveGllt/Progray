@@ -31,8 +31,10 @@ namespace Progray
         public string Telephone { get => TELEPHONE; set => TELEPHONE = value; }
         public string Mobile { get => MOBILE; set => MOBILE = value; }
         public string Statut { get => STATUT; set => STATUT = value; }
-        
 
+        public Client()
+        {
+        }
         public Client(int unId, String unTitre, String unNom, String unPrenom, String uneAdresse, String unCP, String uneVille, string unTelephone, string unMobile, String uneAdresseMail, String unStatut)
         {
             this.IDCLIENT = unId;
