@@ -9,7 +9,18 @@
       Title="pageVoirDepot">
 
     <Grid>
-        <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="190" Margin="10,10,0,0" VerticalAlignment="Top" Width="790" SelectionChanged="dgDepotAll_SelectionChanged" />
+        <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1">
+            <Label Content="Délai" HorizontalAlignment="Left" Margin="309,20,0,0" VerticalAlignment="Top" Width="62" FontWeight="Bold" Height="23"/>
+            <Button x:Name="btnValide" Content="Modifier" HorizontalAlignment="Left" Margin="590,113,0,0" VerticalAlignment="Top" Width="96" Height="19" Click="btnValide_Click" RenderTransformOrigin="-0.479,-0.211"/>
+            <ComboBox x:Name="cbxDelai" HorizontalAlignment="Left" Margin="376,20,0,0" VerticalAlignment="Top" Width="122" Height="18" SelectionChanged="cbxDelai_SelectionChanged"/>
+            <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="23" Margin="116,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="Problème" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="80"/>
+        </Grid>
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="196" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+            <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="353" SelectionChanged="dgDepotAll_SelectionChanged" />
+            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="651,29,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="651,90,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        </Grid>
 
     </Grid>
 </Page>

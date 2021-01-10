@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Progray
 {
@@ -68,6 +69,62 @@ namespace Progray
                 Console.WriteLine(ex.Message);
             }
             return d;
+
+        }
+        public static void update(string unProbleme, string unDelai, int unId)
+        {
+            try
+            {
+
+            
+            open();
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE depot SET DELAI = @DELAI WHERE IDDEPOT = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@id", unId);
+            cmd.Parameters.AddWithValue("@DELAI", unDelai);
+            cmd.CommandText = "UPDATE probleme SET DESCRIPTION = @DESCRIPTION WHERE IDDEPOT = @id";
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@DESCRIPTION", unProbleme);
+            cmd.ExecuteNonQuery();
+            close();
+                MessageBox.Show("Dépôt modifié");
+            }
+            catch (Exception ex)
+            {
+                // Affiche des erreurs
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Erreur !");
+
+            }
+
+        }
+        public static void delete(int unId)
+        {
+            try
+            {
+                open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "DELETE FROM probleme WHERE IDDEPOT = @id";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@id", unId);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "DELETE FROM depot WHERE IDDEPOT = @id";
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Depot supprimé");
+                close();
+
+            }
+            catch (Exception ex)
+            {
+                // Affiche des erreurs
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Erreur ! Le client à effectué un dépôt. Veuillez supprimer le problème");
+
+            }
 
         }
 

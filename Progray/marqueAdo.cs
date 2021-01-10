@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Progray
 {
@@ -76,6 +77,10 @@ namespace Progray
 
         public static void delete(int unId)
         {
+            try
+            {
+
+          
             open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
@@ -85,6 +90,14 @@ namespace Progray
             cmd.ExecuteNonQuery();
             Console.WriteLine("Marque supprimée");
             close();
-        }
+            }
+            catch (Exception ex)
+            {
+                // Affiche des erreurs
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Erreur ! La marque est contenue dans un dépôt");
+
+            }
+        }   
     }
 }

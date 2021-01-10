@@ -28,6 +28,7 @@ namespace Progray
             dgVoirMarque.ItemsSource = marqueAdo.all();
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
+            gridMarque.Visibility = Visibility.Hidden;
         }
 
         private void dgVoirMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -47,12 +48,8 @@ namespace Progray
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-          
 
-            dgVoirMarque.Visibility = Visibility.Hidden;
-
-            btnModifier.Visibility = Visibility.Hidden;
-            btnSupprimer.Visibility = Visibility.Hidden;
+            grid.Visibility = Visibility.Hidden;
             gridMarque.Visibility = Visibility.Visible;
 
             Marque marque = (Marque)dgVoirMarque.SelectedItem;
@@ -64,11 +61,15 @@ namespace Progray
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            grid.Visibility = Visibility.Visible;
+            gridMarque.Visibility = Visibility.Hidden;
             marqueAdo.update(tbxNomMarque.Text, idMarque);
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
+           
+
             Marque marque = (Marque)dgVoirMarque.SelectedItem;
             idMarque = marque.idMarque;
             marqueAdo.delete(idMarque);

@@ -52,7 +52,10 @@ namespace Progray
                 btnModifier.IsEnabled = false;
                 btnSupprimer.IsEnabled = false;
             }
-            Client c = (Client)(dgClientAll.SelectedItem);
+         
+                Client c = (Client)(dgClientAll.SelectedItem);
+            
+            
          
             
         }

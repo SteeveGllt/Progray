@@ -15,16 +15,16 @@ namespace Progray
         DateTime dateDepot;
         string delai;
 
-        string nom;
+        string marq;
         string nomclient;
         string prenomClient;
         string typemateriel;
         string probleme;
 
         public int idDepot { get => IDDEPOT; set => IDDEPOT = value; }
-        public string Nom { get => nom; set => nom = value; }
-        public string Nomclient { get => nomclient; set => nomclient = value; }
+        public string NomClient { get => nomclient; set => nomclient = value; }
         public string PrenomClient { get => prenomClient; set => prenomClient = value; }
+        public string Marques { get => marq; set => marq = value; }
         public string Typemateriel { get => typemateriel; set => typemateriel = value; }
         public DateTime DateDepot { get => dateDepot; set => dateDepot = value; }
         public string Delai { get => delai; set => delai = value; }
@@ -41,7 +41,7 @@ namespace Progray
         public Depot(Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai)
         {
             this.IDDEPOT = 0;
-            this.Marque = uneMarque;
+            this.marque = uneMarque;
             this.client = unClient;
             this.materiel = unMateriel;
             this.dateDepot = DateTime.Now;
@@ -51,8 +51,8 @@ namespace Progray
         public Depot(int unId, string uneMarque, string unClient, string unPrenom, string unMateriel, string unDelai, string unProbleme)
         {
             this.IDDEPOT = unId;
-            this.Nom = uneMarque;
-            this.Nomclient = unClient;
+            this.marq = uneMarque;
+            this.NomClient = unClient;
             this.PrenomClient = unPrenom;
             this.Typemateriel = unMateriel;
             this.dateDepot = DateTime.Now;

@@ -26,20 +26,31 @@ namespace Progray
             InitializeComponent();
             gridMateriel.Visibility = Visibility.Hidden;
             dgVoirMateriel.ItemsSource = materielAdo.all();
+            btnModifier.IsEnabled = false;
+            btnSupprimer.IsEnabled = false;
+            gridMateriel.Visibility = Visibility.Hidden;
+            
         }
 
         private void dgVoirMateriel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (dgVoirMateriel.SelectedItem != null)
+            {
+                btnModifier.IsEnabled = true;
+                btnSupprimer.IsEnabled = true;
+            }
+            else
+            {
+                btnModifier.IsEnabled = false;
+                btnSupprimer.IsEnabled = false;
+            }
             Materiel m = (Materiel)(dgVoirMateriel.CurrentItem);
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
-            dgVoirMateriel.Visibility = Visibility.Hidden;
-
-            btnModifier.Visibility = Visibility.Hidden;
-            btnSupprimer.Visibility = Visibility.Hidden;
             gridMateriel.Visibility = Visibility.Visible;
+            grid.Visibility = Visibility.Hidden;
 
             Materiel materiel = (Materiel)dgVoirMateriel.SelectedItem;
             idMateriel = materiel.IdMateriel;
@@ -57,6 +68,8 @@ namespace Progray
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
         {
+            gridMateriel.Visibility = Visibility.Hidden;
+            grid.Visibility = Visibility.Visible;
             materielAdo.update(tbxType.Text, idMateriel);
         }
     }

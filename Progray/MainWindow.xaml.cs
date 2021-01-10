@@ -20,6 +20,7 @@ using Application = System.Windows.Forms.Application;
 using Path = System.IO.Path;
 using Paragraph = iTextSharp.text.Paragraph;
 using Control = System.Windows.Controls.Control;
+using PdfSharp.Pdf;
 
 namespace Progray
 {
@@ -57,14 +58,14 @@ namespace Progray
             //}
             //dgMarque.ItemsSource = marque;
 
-            //gridEntête.Visibility = Visibility.Visible;
-            //gridMenu.Visibility = Visibility.Visible;
-            //gridPage.Visibility = Visibility.Hidden;
-            //gridMarque.Visibility = Visibility.Hidden;
-            //gridCreerMateriel.Visibility = Visibility.Hidden;
-            //gridClient.Visibility = Visibility.Hidden;
-            //gridProbleme.Visibility = Visibility.Hidden;
-            //gridDepot.Visibility = Visibility.Hidden;
+            gridEntête.Visibility = Visibility.Visible;
+            gridMenu.Visibility = Visibility.Visible;
+            gridPage.Visibility = Visibility.Hidden;
+            gridMarque.Visibility = Visibility.Hidden;
+            gridCreerMateriel.Visibility = Visibility.Hidden;
+            gridClient.Visibility = Visibility.Hidden;
+            gridProbleme.Visibility = Visibility.Hidden;
+            gridDepot.Visibility = Visibility.Hidden;
 
 
 
@@ -257,18 +258,20 @@ namespace Progray
 
         private void btnImprimer_Click(object sender, RoutedEventArgs e)
         {
+            
+
             string outputTempFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + "_temp.pdf"); ;
             string outputFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + ".pdf");
 
             Document document = new Document();
             PdfWriter.GetInstance(document, new FileStream(outputFile, FileMode.Create, FileAccess.ReadWrite));
-
+            PdfPTable test = new PdfPTable(3);
+            
+            string cellule = tbxChoixClient.Text;
             document.Open();
-            document.Add(new Paragraph("Nom client :" + tbxNom.Text));
-
-
-
-            document.Add(new Paragraph("Information client : " + " \n "+ tbxChoixClient.Text + "\n"));
+            
+            document.Add(new Paragraph("Information client : " + );
+            document.Add(new Paragraph(" " + "\n" + " "));
             document.Add(new Paragraph("Matériel : " + tbxChoixMateriel.Text));
             document.Add(new Paragraph("Marque : " + tbxChoixMarque.Text));
             document.Add(new Paragraph("Délai : " + tbxDelai.Text));
@@ -279,7 +282,10 @@ namespace Progray
             document.Add(new Paragraph("Tarif au 05/06/2015 :" + tbxTarif2.Text));
             document.AddTitle(tbxTitrePDF.Text);
 
+           
+
             document.Close();
+            
 
         }
 
