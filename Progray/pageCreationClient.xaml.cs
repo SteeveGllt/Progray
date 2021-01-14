@@ -43,8 +43,6 @@ namespace Progray
             Client c = new Client(0, cbxTitre.Text , tbxNom.Text, tbxPrenom.Text, tbxAdresse.Text, tbxCp.Text, tbxVille.Text, tbxTelephone.Text, tbxMobile.Text, tbxMail.Text, cbxStatut.Text);
             //on ajoute le nouveau client en base de données
             clientAdo.create(c);
-
-            MessageBox.Show("Client créé");
         }
 
         

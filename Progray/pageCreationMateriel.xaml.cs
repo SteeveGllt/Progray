@@ -30,8 +30,6 @@ namespace Progray
             Materiel m = new Materiel(0, tbxTypeMateriel.Text);
             //on ajoute le nouveau client en base de données
             materielAdo.createMateriel(m);
-
-            MessageBox.Show("Matériel créé");
         }
     }
 }

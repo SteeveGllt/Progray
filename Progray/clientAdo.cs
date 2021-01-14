@@ -33,6 +33,7 @@ namespace Progray
                 cmd.Parameters.AddWithValue("@STATUT", client.Statut);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Client crée");
+                MessageBox.Show("Client créé");
                 close();
             }
             catch (MySqlException ex)
@@ -91,6 +92,7 @@ namespace Progray
             cmd.Parameters.AddWithValue("@ADRESSE_MAIL", uneAdresseMail);
             cmd.Parameters.AddWithValue("@STATUT", unStatut);
             cmd.ExecuteNonQuery();
+            MessageBox.Show("Client modifié avec succès");
             close();
         }
 
@@ -106,6 +108,7 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.ExecuteNonQuery();
             Console.WriteLine("Client supprimé");
+            MessageBox.Show("Client supprimé");
             close();
 
             }

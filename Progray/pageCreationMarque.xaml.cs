@@ -31,8 +31,6 @@ namespace Progray
             Marque m = new Marque(0, tbxMarque.Text);
             //on ajoute la nouvelle marque en base de données
             marqueAdo.createMarque(m);
-
-            MessageBox.Show("Marque créée");
         }
     }
 }

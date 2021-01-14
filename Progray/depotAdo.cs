@@ -60,6 +60,7 @@ namespace Progray
                 cmd.ExecuteNonQuery();
                 id = cmd.LastInsertedId;
                 Console.WriteLine("Dépôt crée");
+                MessageBox.Show("Dépôt créé");
                 d.idDepot = (int)id;
                 close();
                 
@@ -115,6 +116,7 @@ namespace Progray
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Depot supprimé");
+                MessageBox.Show("Dépôt supprimé");
                 close();
 
             }

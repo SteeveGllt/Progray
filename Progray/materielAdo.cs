@@ -25,6 +25,7 @@ namespace Progray
                 cmd.Parameters.AddWithValue("@TYPEMATERIEL", materiel.TypeMateriel);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Matériel crée");
+                MessageBox.Show("Matériel créé");
                 close();
             }
             catch (MySqlException ex)
@@ -72,6 +73,7 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.Parameters.AddWithValue("@TYPEMATERIEL", unType);
             cmd.ExecuteNonQuery();
+            MessageBox.Show("Matériel modifié");
             close();
         }
 
@@ -89,7 +91,8 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.ExecuteNonQuery();
             Console.WriteLine("Matériel supprimé");
-            close();
+            MessageBox.Show("Matériel supprimé");
+                close();
             }
             catch (Exception ex)
             {

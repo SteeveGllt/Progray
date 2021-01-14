@@ -21,6 +21,8 @@ using Path = System.IO.Path;
 using Paragraph = iTextSharp.text.Paragraph;
 using Control = System.Windows.Controls.Control;
 using PdfSharp.Pdf;
+using DocumentFormat.OpenXml.Bibliography;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace Progray
 {
@@ -58,14 +60,14 @@ namespace Progray
             //}
             //dgMarque.ItemsSource = marque;
 
-            gridEntête.Visibility = Visibility.Visible;
-            gridMenu.Visibility = Visibility.Visible;
-            gridPage.Visibility = Visibility.Hidden;
-            gridMarque.Visibility = Visibility.Hidden;
-            gridCreerMateriel.Visibility = Visibility.Hidden;
-            gridClient.Visibility = Visibility.Hidden;
-            gridProbleme.Visibility = Visibility.Hidden;
-            gridDepot.Visibility = Visibility.Hidden;
+            //gridEntête.Visibility = Visibility.Visible;
+            //gridMenu.Visibility = Visibility.Visible;
+            //gridPage.Visibility = Visibility.Hidden;
+            //gridMarque.Visibility = Visibility.Hidden;
+            //gridCreerMateriel.Visibility = Visibility.Hidden;
+            //gridClient.Visibility = Visibility.Hidden;
+            //gridProbleme.Visibility = Visibility.Hidden;
+            //gridDepot.Visibility = Visibility.Hidden;
 
 
 
@@ -213,7 +215,7 @@ namespace Progray
         {
             // comme pour le datagrid on récupère la marque sélectionné
             Client client = (Client)(cbxClient.SelectedItem);
-            tbxChoixClient.Text = client.Titre + " | " + client.Nom + " | " + client.Prenom + " | " + client.Adresse + " | " + client.Cp + " | " + client.Ville + " | " + client.Telephone + " | " + client.Mobile + " | " + client.AdresseMail + " | " + client.Statut;
+            tbxChoixClient.Text = client.Nom;
         }
 
         //Bouton retour de la fenêtre dépôt
@@ -258,34 +260,37 @@ namespace Progray
 
         private void btnImprimer_Click(object sender, RoutedEventArgs e)
         {
+
+            //string outputTempFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + "_temp.pdf"); ;
+            //string outputFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + ".pdf");
+
+            //Document document = new Document();
+            //PdfWriter.GetInstance(document, new FileStream(outputFile, FileMode.Create, FileAccess.ReadWrite));
+            //PdfPTable test = new PdfPTable(3);
+
+            //string cellule = tbxChoixClient.Text;
+            //document.Open();
+
+            //document.Add(new Paragraph("Information client : " ));
+            //document.Add(new Paragraph(" " + "\n" + " "));
+            //document.Add(new Paragraph("Matériel : " + tbxChoixMateriel.Text));
+            //document.Add(new Paragraph("Marque : " + tbxChoixMarque.Text));
+            //document.Add(new Paragraph("Délai : " + tbxDelai.Text));
+            //document.Add(new Paragraph("Problème(s) : " + tbxProbleme.Text));
+            //document.Add(new Paragraph(tbxTarif.Text));
+            //document.Add(new Paragraph("Signature client : "));
+            //document.Add(new Paragraph("Cadre réservé à l'atelier : "));
+            //document.Add(new Paragraph("Tarif au 05/06/2015 :" + tbxTarif2.Text));
+            //document.AddTitle(tbxTitrePDF.Text);
+
+
+
+            //document.Close();
+
             
 
-            string outputTempFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + "_temp.pdf"); ;
-            string outputFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + ".pdf");
+            //System.Diagnostics.Process.Start(folderPath + "\\" + strFileName);
 
-            Document document = new Document();
-            PdfWriter.GetInstance(document, new FileStream(outputFile, FileMode.Create, FileAccess.ReadWrite));
-            PdfPTable test = new PdfPTable(3);
-            
-            string cellule = tbxChoixClient.Text;
-            document.Open();
-            
-            document.Add(new Paragraph("Information client : " + );
-            document.Add(new Paragraph(" " + "\n" + " "));
-            document.Add(new Paragraph("Matériel : " + tbxChoixMateriel.Text));
-            document.Add(new Paragraph("Marque : " + tbxChoixMarque.Text));
-            document.Add(new Paragraph("Délai : " + tbxDelai.Text));
-            document.Add(new Paragraph("Problème(s) : " + tbxProbleme.Text));
-            document.Add(new Paragraph(tbxTarif.Text));
-            document.Add(new Paragraph("Signature client : "));
-            document.Add(new Paragraph("Cadre réservé à l'atelier : "));
-            document.Add(new Paragraph("Tarif au 05/06/2015 :" + tbxTarif2.Text));
-            document.AddTitle(tbxTitrePDF.Text);
-
-           
-
-            document.Close();
-            
 
         }
 
@@ -327,6 +332,33 @@ namespace Progray
         private void MenuItem_Click_7(object sender, RoutedEventArgs e)
         {
             frame.Content = new pageVoirDepot();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            var w = Utilities.MillimetersToPoints(420);
+            var h = Utilities.MillimetersToPoints(210);
+            
+
+            var doc1 = new Document(new Rectangle(w, h));
+
+            PdfWriter writer = PdfWriter.GetInstance(doc1, new FileStream("Doc1.pdf", FileMode.Create));
+
+            doc1.Open();
+
+            PdfContentByte cb = writer.DirectContent;
+
+            var rect = new iTextSharp.text.Rectangle(200, 200, 100, 100);
+            
+            rect.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER;
+            rect.Border = iTextSharp.text.Rectangle.BOX;
+            rect.BorderWidth = 5;
+            rect.BorderColor = new BaseColor(0, 0, 0);
+            cb.Rectangle(rect);
+
+            
+
+            doc1.Close();
         }
     }
 }

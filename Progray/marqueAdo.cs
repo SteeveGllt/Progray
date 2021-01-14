@@ -24,6 +24,7 @@ namespace Progray
                 cmd.Parameters.AddWithValue("@NOMMARQUE", marque.Nom);
                 cmd.ExecuteNonQuery();
                 Console.WriteLine("Marque crée");
+                MessageBox.Show("Marque créée");
                 close();
             }
             catch (MySqlException ex)
@@ -72,6 +73,7 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.Parameters.AddWithValue("@NOMMARQUE", unNom);
             cmd.ExecuteNonQuery();
+            MessageBox.Show("Marque modifiée");
             close();
         }
 
@@ -89,6 +91,7 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.ExecuteNonQuery();
             Console.WriteLine("Marque supprimée");
+            MessageBox.Show("Marque supprmée");
             close();
             }
             catch (Exception ex)

@@ -24,6 +24,11 @@ namespace Progray
             this.depot = unDepot;
             this.DESCRIPTION = uneDescription;
         }
-       
+
+        public override string ToString()
+        {
+            return DESCRIPTION;
+        }
+
     }
 }
