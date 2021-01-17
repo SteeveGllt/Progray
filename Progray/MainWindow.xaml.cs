@@ -336,29 +336,7 @@ namespace Progray
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            var w = Utilities.MillimetersToPoints(420);
-            var h = Utilities.MillimetersToPoints(210);
             
-
-            var doc1 = new Document(new Rectangle(w, h));
-
-            PdfWriter writer = PdfWriter.GetInstance(doc1, new FileStream("Doc1.pdf", FileMode.Create));
-
-            doc1.Open();
-
-            PdfContentByte cb = writer.DirectContent;
-
-            var rect = new iTextSharp.text.Rectangle(200, 200, 100, 100);
-            
-            rect.Border = iTextSharp.text.Rectangle.LEFT_BORDER | iTextSharp.text.Rectangle.RIGHT_BORDER;
-            rect.Border = iTextSharp.text.Rectangle.BOX;
-            rect.BorderWidth = 5;
-            rect.BorderColor = new BaseColor(0, 0, 0);
-            cb.Rectangle(rect);
-
-            
-
-            doc1.Close();
         }
     }
 }

@@ -79,6 +79,8 @@ namespace Progray
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
             problemeAdo.createProbleme(probleme);
 
+            
+
             PdfPTable pdfTableBlank = new PdfPTable(1);
 
 
@@ -89,6 +91,7 @@ namespace Progray
             PdfPTable pdfTable2 = new PdfPTable(1);
             PdfPTable pdfTable3 = new PdfPTable(2);
             PdfPTable pdfTableText = new PdfPTable(2);
+            PdfPTable pdfTarif = new PdfPTable(1);
             PdfPTable pdfImage = new PdfPTable(1);
 
             System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
@@ -97,6 +100,7 @@ namespace Progray
             pdfTable1.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
             pdfTable1.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
             pdfTable1.DefaultCell.BorderWidth = 0;
+            pdfTable1.DefaultCell.Padding = 10;
 
 
             pdfTable3.DefaultCell.Padding = 5;
@@ -107,16 +111,28 @@ namespace Progray
             pdfTableText.WidthPercentage = 80;
             pdfTableText.DefaultCell.BorderWidth = 0.5f;
 
+            pdfTarif.DefaultCell.Padding = 5;
+            pdfTarif.WidthPercentage = 80;
+            pdfTarif.DefaultCell.BorderWidth = 0.5f;
+
+            pdfTarif.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
+
+            
+
+
             string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\progray.jpg";
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
 
-            jpg.ScaleToFit(60f, 50f);
+            jpg.ScaleToFit(80f, 70f);
 
 
-            jpg.Alignment = Element.ALIGN_RIGHT;
+            jpg.Alignment = Element.ALIGN_CENTER;
 
             Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
             pdfTable1.AddCell(p1);
+
+            
+
   
 
 
@@ -153,6 +169,29 @@ namespace Progray
             pdfTableText.AddCell(new Phrase("PROBLEME", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTableText.AddCell(new Phrase(Convert.ToString(probleme.ToString())));
 
+            using (StreamReader sr = new StreamReader("progray.txt"))
+            {
+                string line;
+                // Read and display lines from the file until the end of
+                // the file is reached.
+                while ((line = sr.ReadLine()) != null)
+                {
+                    //pdfTarif.AddCell(line);
+                }
+            }
+            using (StreamReader sr = new StreamReader("tarif.txt"))
+            {
+                string line;
+                
+                // Read and display lines from the file until the end of
+                // the file is reached.
+                while ((line = sr.ReadLine()) != null)
+                {
+                    pdfTarif.AddCell(line);
+                   
+                }
+            }
+
             string folderPath = "D:\\PDF\\";
             if (!Directory.Exists(folderPath))
             {
@@ -177,7 +216,10 @@ namespace Progray
                 pdfDoc.Add(pdfTableBlank);
                 pdfDoc.Add(pdfTable3);
                 pdfDoc.Add(new Paragraph("Matériel déposé : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfTableText);
+                pdfDoc.Add(pdfTableText);      
+                pdfDoc.NewPage();
+                pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                pdfDoc.Add(pdfTarif);
                 pdfDoc.NewPage();
 
                 pdfDoc.Close();
