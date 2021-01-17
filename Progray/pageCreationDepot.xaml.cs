@@ -176,7 +176,7 @@ namespace Progray
                 // the file is reached.
                 while ((line = sr.ReadLine()) != null)
                 {
-                    //pdfTarif.AddCell(line);
+                    pdfTarif.AddCell(line);
                 }
             }
             using (StreamReader sr = new StreamReader("tarif.txt"))
