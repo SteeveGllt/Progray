@@ -1,5 +1,8 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +10,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.Forms.MessageBox;
+using Paragraph = iTextSharp.text.Paragraph;
 
 namespace Progray
 {
@@ -22,9 +28,6 @@ namespace Progray
     {
         int idDepot = 0;
         int idProbleme = 0;
-        List<Materiel> materiels;
-        List<Marque> marques;
-        List<Client> clients;
         Depot depot;
         string[] delai = new string[] { "Normal", "Autre" };
         public pageVoirDepot()
@@ -41,6 +44,7 @@ namespace Progray
 
         private void dgDepotAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             if (dgDepotAll.SelectedItem != null)
             {
                 btnModifier.IsEnabled = true;
@@ -55,8 +59,6 @@ namespace Progray
             Depot d = (Depot)(dgDepotAll.SelectedItem);
             
         }
-
- 
 
         private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -82,14 +84,16 @@ namespace Progray
             cbxDelai.Text = depot.Delai;
             tbxProbleme.Text = depot.Probleme;
 
+            
+
         }
         private void btnValide_Click(object sender, RoutedEventArgs e)
         {
             gridModifier.Visibility = Visibility.Hidden;
             grid.Visibility = Visibility.Visible;
- 
-            depotAdo.update(tbxProbleme.Text, cbxDelai.Text, idDepot);
 
+            depotAdo.update(tbxProbleme.Text, cbxDelai.Text, idDepot);
+            depotAdo.updateTache(tbxTache.Text, idDepot);
 
         }
 

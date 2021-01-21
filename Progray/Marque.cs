@@ -8,8 +8,8 @@ namespace Progray
 {
     public class Marque
     {
-        int IDMARQUE;
-        String NOM;
+        private int IDMARQUE;
+        private String NOM;
 
         public int idMarque { get => IDMARQUE; set => IDMARQUE = value; }
         public string Nom { get => NOM; set => NOM = value; }

@@ -54,7 +54,7 @@
             <Image Margin="529,53,542,439" Source="progray.jpg" Stretch="Fill"/>
             <Button x:Name="btnRetourMarque" Content="Retour" HorizontalAlignment="Left" Margin="319,477,0,0" VerticalAlignment="Top" Width="75" Click="btnRetourMarque_Click"/>
         </Grid>
-        <Grid x:Name="gridMenu" HorizontalAlignment="Left" Height="593" Margin="0,85,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden">
+        <Grid x:Name="gridMenu" HorizontalAlignment="Left" Height="593" Margin="0,85,0,0" VerticalAlignment="Top" Width="1223" Visibility="Hidden" d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="397*"/>
                 <ColumnDefinition Width="826*"/>

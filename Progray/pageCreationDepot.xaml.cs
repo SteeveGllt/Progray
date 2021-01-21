@@ -68,6 +68,7 @@ namespace Progray
             string d = (string)cbxDelai.SelectedItem;
         }
 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Marque marque = (Marque)(cbxMarque.SelectedItem);
@@ -79,19 +80,16 @@ namespace Progray
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
             problemeAdo.createProbleme(probleme);
 
-            
+
 
             PdfPTable pdfTableBlank = new PdfPTable(1);
-
-
-
-
 
             PdfPTable pdfTable1 = new PdfPTable(1);
             PdfPTable pdfTable2 = new PdfPTable(1);
             PdfPTable pdfTable3 = new PdfPTable(2);
             PdfPTable pdfTableText = new PdfPTable(2);
             PdfPTable pdfTarif = new PdfPTable(1);
+            PdfPTable pdfCadre = new PdfPTable(1);
             PdfPTable pdfImage = new PdfPTable(1);
 
             System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
@@ -114,16 +112,25 @@ namespace Progray
             pdfTarif.DefaultCell.Padding = 5;
             pdfTarif.WidthPercentage = 80;
             pdfTarif.DefaultCell.BorderWidth = 0.5f;
-
             pdfTarif.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
 
-            
+            pdfCadre.DefaultCell.Padding = 5;
+            pdfCadre.WidthPercentage = 80;
+            pdfCadre.DefaultCell.BorderWidth = 0.5f;
+            pdfCadre.DefaultCell.FixedHeight = 150f;
 
 
-            string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\progray.jpg";
+
+
+
+
+
+
+
+            string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\test.png";
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
 
-            jpg.ScaleToFit(80f, 70f);
+            jpg.ScaleToFit(250f, 150f);
 
 
             jpg.Alignment = Element.ALIGN_CENTER;
@@ -169,6 +176,9 @@ namespace Progray
             pdfTableText.AddCell(new Phrase("PROBLEME", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTableText.AddCell(new Phrase(Convert.ToString(probleme.ToString())));
 
+            pdfCadre.AddCell(new Phrase(" "));
+
+
             using (StreamReader sr = new StreamReader("progray.txt"))
             {
                 string line;
@@ -176,7 +186,7 @@ namespace Progray
                 // the file is reached.
                 while ((line = sr.ReadLine()) != null)
                 {
-                    pdfTarif.AddCell(line);
+                    //pdfTarif.AddCell(line);
                 }
             }
             using (StreamReader sr = new StreamReader("tarif.txt"))
@@ -199,7 +209,7 @@ namespace Progray
             }
 
             int fileCount = Directory.GetFiles(@"D:\\PDF").Length;
-            string strFileName = "FicheSav"+ depot.Client.Nom + (fileCount + 1) + ".pdf";
+            string strFileName = "FicheSav" + " " + depot.Client.Nom + " " + depot.DateDepot.ToString("dd-MM-yyyy") + ".pdf";
 
 
             using (FileStream stream = new FileStream(folderPath + strFileName, FileMode.Create))
@@ -216,7 +226,10 @@ namespace Progray
                 pdfDoc.Add(pdfTableBlank);
                 pdfDoc.Add(pdfTable3);
                 pdfDoc.Add(new Paragraph("Matériel déposé : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfTableText);      
+                pdfDoc.Add(pdfTableText);
+                pdfDoc.Add(new Paragraph("Cadre réservé à l'entreprise : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                pdfDoc.Add(pdfCadre);
+                pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                 pdfDoc.NewPage();
                 pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                 pdfDoc.Add(pdfTarif);

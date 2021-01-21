@@ -8,8 +8,8 @@ namespace Progray
 {
     public class Materiel
     {
-        int IDMATERIEL;
-        String TYPEMATERIEL;
+        private int IDMATERIEL;
+        private String TYPEMATERIEL;
 
         public int IdMateriel { get => IDMATERIEL; set => IDMATERIEL = value; }
         public string TypeMateriel { get => TYPEMATERIEL; set => TYPEMATERIEL = value; }

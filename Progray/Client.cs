@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace Progray
 {
+    [Serializable]
     public class Client
     {
-        int IDCLIENT;
-        String TITRE;
-        String NOM;
-        String PRENOM;
-        String ADRESSE;
-        String CP;
-        String VILLE;
-        String TELEPHONE;
-        String MOBILE;
-        String ADRESSE_MAIL;
-        String STATUT;
+        private int IDCLIENT;
+        private String TITRE;
+        private String NOM;
+        private String PRENOM;
+        private String ADRESSE;
+        private String CP;
+        private String VILLE;
+        private String TELEPHONE;
+        private String MOBILE;
+        private String ADRESSE_MAIL;
+        private String STATUT;
 
         public int idClient { get => IDCLIENT; set => IDCLIENT = value; }
         public string Titre { get => TITRE; set => TITRE = value; }
