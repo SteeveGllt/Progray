@@ -22,10 +22,13 @@
             <Label Content="Tâche(s) :" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbxTache" HorizontalAlignment="Left" Height="129" Margin="116,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="454" Grid.RowSpan="2"/>
         </Grid>
-        <Grid x:Name="grid" HorizontalAlignment="Left" Height="196" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
-            <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="180" Margin="10,10,0,0" VerticalAlignment="Top" Width="353" SelectionChanged="dgDepotAll_SelectionChanged" />
-            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="651,29,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
-            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="651,90,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="297" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+            <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="180" Margin="10,107,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="dgDepotAll_SelectionChanged" CanUserAddRows="False"/>
+            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="640,156,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="640,217,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+            <Label Content="Rechercher :" HorizontalAlignment="Left" Margin="56,42,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="tbxRecherche" HorizontalAlignment="Left" Height="23" Margin="158,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="318,48,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </Grid>
 
     </Grid>

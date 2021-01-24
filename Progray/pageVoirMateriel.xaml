@@ -15,7 +15,7 @@
             <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="232,84,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>
         </Grid>
         <Grid x:Name="grid" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
-            <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="225" VerticalAlignment="Top" Width="214" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="64,10,502,0"/>
+            <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="225" VerticalAlignment="Top" Width="214" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="64,10,502,0" CanUserAddRows="False"/>
             <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="520,67,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
             <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="520,129,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
         </Grid>

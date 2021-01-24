@@ -2,6 +2,7 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace Progray
     /// </summary>
     public partial class pageVoirDepot : Page
     {
+
         int idDepot = 0;
         int idProbleme = 0;
         Depot depot;
@@ -56,7 +58,6 @@ namespace Progray
                 btnSupprimer.IsEnabled = false;
             }
 
-            Depot d = (Depot)(dgDepotAll.SelectedItem);
             
         }
 
@@ -103,6 +104,12 @@ namespace Progray
             idDepot = depot.idDepot;
 
             depotAdo.delete(idDepot);
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
