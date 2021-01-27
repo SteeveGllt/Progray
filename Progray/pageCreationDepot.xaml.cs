@@ -28,7 +28,7 @@ namespace Progray
         List<Marque> marques;
         List<Client> clients;
         Depot depot;
-        string[] delai = new string[] { "Normal", "Autre" };
+        string[] delai = new string[] { "Normal - suivant la date de dépôt", "Moyen - 48 heures de délai +50€ HT", "Urgent - 24 heures de délai +75€ HT", "PRIORITAIRE - SAV DANS LA JOURNEE +95€ HT" };
         public pageCreationDepot()
         {
             InitializeComponent();
@@ -74,7 +74,7 @@ namespace Progray
             Marque marque = (Marque)(cbxMarque.SelectedItem);
             Client client = (Client)(cbxClient.SelectedItem);
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
-            Depot d = new Depot(marque, client, materiel, cbxDelai.Text);
+            Depot d = new Depot(marque, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
             depot = depotAdo.createDepot(d);
 
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);

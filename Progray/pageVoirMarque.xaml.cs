@@ -21,6 +21,7 @@ namespace Progray
     public partial class pageVoirMarque : Page
     {
         int idMarque = 0;
+        int code = 0;
         public pageVoirMarque()
         {
             InitializeComponent();
@@ -54,8 +55,10 @@ namespace Progray
 
             Marque marque = (Marque)dgVoirMarque.SelectedItem;
             idMarque = marque.idMarque;
+            
 
             tbxNomMarque.Text = marque.Nom;
+
             
         }
 
@@ -64,6 +67,7 @@ namespace Progray
             grid.Visibility = Visibility.Visible;
             gridMarque.Visibility = Visibility.Hidden;
             marqueAdo.update(tbxNomMarque.Text, idMarque);
+            modeleAdo.update(tbxModele.Text, idMarque);
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
@@ -73,6 +77,16 @@ namespace Progray
             Marque marque = (Marque)dgVoirMarque.SelectedItem;
             idMarque = marque.idMarque;
             marqueAdo.delete(idMarque);
+
+            //DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+
+            //}
+            //else if (dialogResult == DialogResult.No)
+            //{
+
+            //}
         }
     }
 }

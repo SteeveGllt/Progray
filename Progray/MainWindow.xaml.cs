@@ -261,35 +261,6 @@ namespace Progray
         private void btnImprimer_Click(object sender, RoutedEventArgs e)
         {
 
-            //string outputTempFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + "_temp.pdf"); ;
-            //string outputFile = Path.Combine(Application.StartupPath, tbxTitrePDF.Text + ".pdf");
-
-            //Document document = new Document();
-            //PdfWriter.GetInstance(document, new FileStream(outputFile, FileMode.Create, FileAccess.ReadWrite));
-            //PdfPTable test = new PdfPTable(3);
-
-            //string cellule = tbxChoixClient.Text;
-            //document.Open();
-
-            //document.Add(new Paragraph("Information client : " ));
-            //document.Add(new Paragraph(" " + "\n" + " "));
-            //document.Add(new Paragraph("Matériel : " + tbxChoixMateriel.Text));
-            //document.Add(new Paragraph("Marque : " + tbxChoixMarque.Text));
-            //document.Add(new Paragraph("Délai : " + tbxDelai.Text));
-            //document.Add(new Paragraph("Problème(s) : " + tbxProbleme.Text));
-            //document.Add(new Paragraph(tbxTarif.Text));
-            //document.Add(new Paragraph("Signature client : "));
-            //document.Add(new Paragraph("Cadre réservé à l'atelier : "));
-            //document.Add(new Paragraph("Tarif au 05/06/2015 :" + tbxTarif2.Text));
-            //document.AddTitle(tbxTitrePDF.Text);
-
-
-
-            //document.Close();
-
-            
-
-            //System.Diagnostics.Process.Start(folderPath + "\\" + strFileName);
 
 
         }
@@ -337,6 +308,16 @@ namespace Progray
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void MenuItem_Click_8(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageVoirModele();
+        }
+
+        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
+        {
+            frame.Content = new pageAjoutModele();
         }
     }
 }

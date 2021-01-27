@@ -19,10 +19,12 @@
             <ComboBox x:Name="cbxClient" HorizontalAlignment="Left" Margin="107,46,0,0" VerticalAlignment="Top" Width="113" SelectionChanged="cbxClient_SelectionChanged"/>
             <Label Content="Client" HorizontalAlignment="Left" Margin="33,40,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="47"/>
             <Button x:Name="btnValide" Content="Valider le dépôt" HorizontalAlignment="Left" Margin="637,379,0,0" VerticalAlignment="Top" Width="96" Click="Button_Click"/>
-            <ComboBox x:Name="cbxDelai" HorizontalAlignment="Left" Margin="107,114,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxDelai_SelectionChanged"/>
+            <ComboBox x:Name="cbxDelai" HorizontalAlignment="Left" Margin="107,114,0,0" VerticalAlignment="Top" Width="233" SelectionChanged="cbxDelai_SelectionChanged"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="252" Margin="-1,195,0,0" Stroke="Black" VerticalAlignment="Top" Width="801" Panel.ZIndex="-3"/>
             <Label x:Name="lblProbleme" Content="Problème(s)" HorizontalAlignment="Left" Height="28" Margin="27,292,0,0" VerticalAlignment="Top" Width="61" FontWeight="Bold"/>
             <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="183" Margin="119,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="447"/>
+            <Label Content="N° Série :" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox x:Name="tbxNumSerie" HorizontalAlignment="Left" Height="23" Margin="500,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
         </Grid>
 
     </Grid>

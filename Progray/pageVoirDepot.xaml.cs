@@ -2,6 +2,7 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Progray
         int idDepot = 0;
         int idProbleme = 0;
         Depot depot;
-        string[] delai = new string[] { "Normal", "Autre" };
+        string[] delai = new string[] { "Normal - suivant la date de dépôt", "Moyen - 48 heures de délai +50€ HT", "Urgent - 24 heures de délai +75€ HT", "PRIORITAIRE - SAV DANS LA JOURNEE +95€ HT" };
         public pageVoirDepot()
         {
             InitializeComponent();
@@ -41,6 +42,8 @@ namespace Progray
             gridModifier.Visibility = Visibility.Hidden;
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
+
+            
 
         }
 
@@ -84,6 +87,8 @@ namespace Progray
           
             cbxDelai.Text = depot.Delai;
             tbxProbleme.Text = depot.Probleme;
+            tbxNumSerie.Text = depot.NumSerie;
+            tbxTache.Text = depot.Tache;
 
             
 
@@ -93,8 +98,9 @@ namespace Progray
             gridModifier.Visibility = Visibility.Hidden;
             grid.Visibility = Visibility.Visible;
 
-            depotAdo.update(tbxProbleme.Text, cbxDelai.Text, idDepot);
-            depotAdo.updateTache(tbxTache.Text, idDepot);
+            depotAdo.update(cbxDelai.Text, idDepot);
+            depotAdo.updateTache(tbxNumSerie.Text, tbxTache.Text, idDepot);
+            depotAdo.updateProbleme(tbxProbleme.Text, idDepot);
 
         }
 
@@ -107,9 +113,13 @@ namespace Progray
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void tbxRecherche_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Client.Nom.Contains(tbxRecherche.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
         }
     }
 }

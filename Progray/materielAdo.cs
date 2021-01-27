@@ -41,7 +41,7 @@ namespace Progray
                 List<Materiel> materiels = new List<Materiel>();
                 MySqlDataReader reader; // Contiendra les données
                 open();
-                MySqlCommand requete = new MySqlCommand("SELECT * FROM materiel");
+                MySqlCommand requete = new MySqlCommand("SELECT * FROM materiel ORDER BY TYPEMATERIEL");
                 requete.Connection = conn; // Connexion instanciée auparavant
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
                 while (reader.Read())

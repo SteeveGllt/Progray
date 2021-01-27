@@ -31,7 +31,7 @@ namespace Progray
         }
         public override string ToString()
         {
-            return this.Nom;
+            return Nom;
         }
     }
 }

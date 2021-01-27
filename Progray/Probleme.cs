@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Progray
 {
-    class Probleme
+    public class Probleme
     {
         int IDPROBLEME;
         Depot depot;

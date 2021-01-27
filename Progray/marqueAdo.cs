@@ -11,9 +11,9 @@ namespace Progray
     class marqueAdo : Ado
     {
   
-        public static void createMarque(Marque marque)
+        public static Marque createMarque(Marque marque)
         {
-
+            long id = 0;
             try
             {
                 open();
@@ -23,8 +23,10 @@ namespace Progray
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@NOMMARQUE", marque.Nom);
                 cmd.ExecuteNonQuery();
+                id = cmd.LastInsertedId;
                 Console.WriteLine("Marque crée");
                 MessageBox.Show("Marque créée");
+                marque.idMarque = (int)id;
                 close();
             }
             catch (MySqlException ex)
@@ -32,6 +34,7 @@ namespace Progray
                 Console.WriteLine(ex.Message);
 
             }
+            return marque;
         }
         public static List<Marque> all()
         {
@@ -40,11 +43,13 @@ namespace Progray
                 List<Marque> marques = new List<Marque>();
                 MySqlDataReader reader; // Contiendra les données
                 open();
-                MySqlCommand requete = new MySqlCommand("SELECT * FROM marque");
+                MySqlCommand requete = new MySqlCommand("SELECT * FROM marque ORDER BY NOMMARQUE");
                 requete.Connection = conn; // Connexion instanciée auparavant
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
+               
                 while (reader.Read())
                 {
+
                     Marque marque = new Marque((int)reader["IDMARQUE"],(String)reader["NOMMARQUE"]);
                     marques.Add(marque);
                 }
@@ -91,14 +96,14 @@ namespace Progray
             cmd.Parameters.AddWithValue("@id", unId);
             cmd.ExecuteNonQuery();
             Console.WriteLine("Marque supprimée");
-            MessageBox.Show("Marque supprmée");
+            MessageBox.Show("Marque supprimée");
             close();
             }
             catch (Exception ex)
             {
                 // Affiche des erreurs
                 Console.WriteLine(ex.Message);
-                MessageBox.Show("Erreur ! La marque est contenue dans un dépôt");
+                MessageBox.Show("Erreur ! La marque est contenue dans un dépôt et/ou dans une table");
 
             }
         }   

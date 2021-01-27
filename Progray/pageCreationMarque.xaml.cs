@@ -20,6 +20,7 @@ namespace Progray
     /// </summary>
     public partial class pageCreationMarque : Page
     {
+        Marque marque;
         public pageCreationMarque()
         {
             InitializeComponent();
@@ -29,8 +30,10 @@ namespace Progray
         private void btnCreerMarque_Click(object sender, RoutedEventArgs e)
         {
             Marque m = new Marque(0, tbxMarque.Text);
+            
             //on ajoute la nouvelle marque en base de données
-            marqueAdo.createMarque(m);
+           marque =  marqueAdo.createMarque(m);
+
         }
     }
 }
