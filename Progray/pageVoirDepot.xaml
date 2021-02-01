@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Progray"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="pageVoirDepot">
+      d:DesignHeight="450"
+      Title="pageVoirDepot" Width="1058">
 
     <Grid>
         <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1" d:IsHidden="True">
@@ -24,12 +24,16 @@
             <Label Content="N° Série :" HorizontalAlignment="Left" Margin="373,84,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNumSerie" HorizontalAlignment="Left" Height="23" Margin="450,84,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid" HorizontalAlignment="Left" Height="297" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="297" Margin="10,10,0,0" VerticalAlignment="Top" Width="1038">
             <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="180" Margin="10,107,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="dgDepotAll_SelectionChanged" CanUserAddRows="False"/>
             <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="640,156,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
             <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="640,217,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
-            <Label Content="Rechercher :" HorizontalAlignment="Left" Margin="56,42,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="tbxRecherche" HorizontalAlignment="Left" Height="23" Margin="158,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbxRecherche_TextChanged"/>
+            <Label Content="Recherche par Nom :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox x:Name="tbxRecherche" HorizontalAlignment="Left" Height="23" Margin="136,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbxRecherche_TextChanged"/>
+            <Label Content="Recherche par Marque :" HorizontalAlignment="Left" Margin="261,10,0,0" VerticalAlignment="Top" Width="146" FontWeight="Bold"/>
+            <ComboBox x:Name="cbxMarque" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top" Width="163" SelectionChanged="cbxMarque_SelectionChanged"/>
+            <Label Content="Recherche par Matériel :" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="152" FontWeight="Bold"/>
+            <ComboBox x:Name="cbxMateriel" HorizontalAlignment="Left" Margin="749,10,0,0" VerticalAlignment="Top" Width="163" SelectionChanged="ComboBox_SelectionChanged"/>
         </Grid>
 
     </Grid>

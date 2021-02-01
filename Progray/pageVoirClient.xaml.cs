@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Progray
 {
@@ -32,12 +34,13 @@ namespace Progray
         public pageVoirClient()
         {
             InitializeComponent();
-            gridTest.Visibility = Visibility.Hidden;
+            gridModif.Visibility = Visibility.Hidden;
             dgClientAll.ItemsSource = clientAdo.all();
             cbxTitre.ItemsSource = titre;
             cbxStatut.ItemsSource = statut;
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
+
         }
 
         private void dgClientAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,12 +65,11 @@ namespace Progray
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
+            gridMain.Visibility = Visibility.Hidden;
+
+            gridModif.Visibility = Visibility.Visible;
             
-            dgClientAll.Visibility = Visibility.Hidden;
-            
-            btnModifier.Visibility = Visibility.Hidden;
-            btnSupprimer.Visibility = Visibility.Hidden;
-            gridTest.Visibility = Visibility.Visible;
+
 
             Client client = (Client)dgClientAll.SelectedItem;
             idClient = client.idClient;
@@ -86,17 +88,34 @@ namespace Progray
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             clientAdo.update(cbxTitre.Text, tbxNom.Text, tbxPrenom.Text, tbxAdresse.Text, tbxCp.Text, tbxVille.Text, tbxTelephone.Text, tbxMobile.Text, tbxMail.Text, cbxStatut.Text, idClient);
+            gridModif.Visibility = Visibility.Hidden;
+            gridMain.Visibility = Visibility.Visible;
+
+            dgClientAll.ItemsSource = null;
+            dgClientAll.ItemsSource = clientAdo.all();
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Client client = (Client)dgClientAll.SelectedItem;
+                idClient = client.idClient;
+
+                clientAdo.delete(idClient);
+
+                dgClientAll.ItemsSource = null;
+                dgClientAll.ItemsSource = clientAdo.all();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
+
             
-
-            Client client = (Client)dgClientAll.SelectedItem;
-            idClient = client.idClient;
-
-            clientAdo.delete(idClient);
 
 
 

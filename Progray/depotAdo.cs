@@ -17,8 +17,8 @@ namespace Progray
                 List<Depot> depots = new List<Depot>();
                 MySqlDataReader reader; // Contiendra les données
                 open();
-                MySqlCommand requete = new MySqlCommand("SELECT * FROM (((depot d inner join marque m on d.IDMARQUE = m.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
-                //MySqlCommand requete = new MySqlCommand("SELECT * FROM ((((modele mo inner join marque m on mo.IDMARQUE = m.IDMARQUE) inner join depot d on m.IDMARQUE = d.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT");
+                MySqlCommand requete = new MySqlCommand("SELECT * FROM ((((depot d inner join marque m on d.IDMARQUE = m.IDMARQUE) inner join modele mo on m.IDMARQUE = mo.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
+                //MySqlCommand requete = new MySqlCommand("SELECT * FROM ((((modele model inner join marque m on model.IDMARQUE = m.IDMARQUE) inner join depot d on m.IDMARQUE = d.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT");
                 requete.Connection = conn; // Connexion instanciée auparavant
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
                 while (reader.Read())
@@ -27,14 +27,15 @@ namespace Progray
                     string numSerie = "";
                     Marque marque = new Marque();
                     marque.Nom = (string)reader["NOMMARQUE"];
-                    //marque.Modele.Model = (string)reader["MODELE"];
+                    
+                    //Modele modele = new Modele();
+                    //modele.Model = (string)reader["MODELE"];
+
                     Materiel materiel = new Materiel();
                     materiel.TypeMateriel = (string)reader["TYPEMATERIEL"];
                     Client client = new Client();
                     client.Prenom = (string)reader["PRENOM"];
                     client.Nom = (string)reader["NOM"];
-                    //Modele modele = new Modele();
-                    //modele.Model = (string)reader["MODELE"];
                     if (!reader.IsDBNull(6))
                     {
                         tache = reader.GetString(6);
@@ -62,7 +63,7 @@ namespace Progray
                 close();
             }
         }
-
+       
         public static Depot createDepot(Depot d)
         {
             long id = 0;

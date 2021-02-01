@@ -2,6 +2,7 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Progray
         List<Materiel> materiels;
         List<Marque> marques;
         List<Client> clients;
+        List<Modele> modeles;
         Depot depot;
         string[] delai = new string[] { "Normal - suivant la date de dépôt", "Moyen - 48 heures de délai +50€ HT", "Urgent - 24 heures de délai +75€ HT", "PRIORITAIRE - SAV DANS LA JOURNEE +95€ HT" };
         public pageCreationDepot()
@@ -46,6 +48,13 @@ namespace Progray
             cbxMateriel.ItemsSource = null;
             cbxMateriel.ItemsSource = this.materiels;
 
+            this.modeles = modeleAdo.all();
+            cbxModele.ItemsSource = null;
+            cbxModele.ItemsSource = this.modeles;
+
+            lblModele.Visibility = Visibility.Hidden;
+            cbxModele.Visibility = Visibility.Hidden;
+
         }
 
         private void cbxClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,12 +69,28 @@ namespace Progray
 
         private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Marque marque = (Marque)(cbxMarque.SelectedItem);
+            if(cbxMarque != null)
+            {
+                Marque marque = (Marque)(cbxMarque.SelectedItem);
+                lblModele.Visibility = Visibility.Visible;
+                cbxModele.Visibility = Visibility.Visible;
+
+                var _itemSourceList = new CollectionViewSource() { Source = modeleAdo.all() };
+                ICollectionView Itemlist = _itemSourceList.View;
+                var yourCostumFilter = new Predicate<object>(item => ((Modele)item).Marque.Nom.Contains(marque.Nom));
+                Itemlist.Filter = yourCostumFilter;
+                cbxModele.ItemsSource = Itemlist;
+            }
+           
         }
 
         private void cbxDelai_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string d = (string)cbxDelai.SelectedItem;
+        }
+        private void cbxModele_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
 
@@ -80,8 +105,6 @@ namespace Progray
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
             problemeAdo.createProbleme(probleme);
 
-
-
             PdfPTable pdfTableBlank = new PdfPTable(1);
 
             PdfPTable pdfTable1 = new PdfPTable(1);
@@ -91,6 +114,7 @@ namespace Progray
             PdfPTable pdfTarif = new PdfPTable(1);
             PdfPTable pdfCadre = new PdfPTable(1);
             PdfPTable pdfImage = new PdfPTable(1);
+            PdfPTable pdfText = new PdfPTable(1);
 
             System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
 
@@ -119,29 +143,18 @@ namespace Progray
             pdfCadre.DefaultCell.BorderWidth = 0.5f;
             pdfCadre.DefaultCell.FixedHeight = 150f;
 
-
-
-
-
-
-
-
+            pdfText.DefaultCell.Padding = 5;
+            pdfText.WidthPercentage = 80;
+            pdfText.DefaultCell.BorderWidth = 0.5f;
+            pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
 
             string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\test.png";
             iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
-
             jpg.ScaleToFit(250f, 150f);
-
-
             jpg.Alignment = Element.ALIGN_CENTER;
 
             Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
             pdfTable1.AddCell(p1);
-
-            
-
-  
-
 
             pdfTable3.AddCell(new Phrase("TITRE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTable3.AddCell(new Phrase(depot.Client.Titre));
@@ -164,7 +177,6 @@ namespace Progray
             pdfTable3.AddCell(new Phrase("STATUT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTable3.AddCell(new Phrase(depot.Client.Statut));
 
-
             pdfTableText.AddCell(new Phrase("MATERIEL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTableText.AddCell(new Phrase(depot.Materiel.TypeMateriel));
             pdfTableText.AddCell(new Phrase("MARQUE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
@@ -186,7 +198,7 @@ namespace Progray
                 // the file is reached.
                 while ((line = sr.ReadLine()) != null)
                 {
-                    //pdfTarif.AddCell(line);
+                    pdfText.AddCell(line);
                 }
             }
             using (StreamReader sr = new StreamReader("tarif.txt"))
@@ -218,7 +230,6 @@ namespace Progray
                 PdfWriter.GetInstance(pdfDoc, stream);
                 pdfDoc.Open();
 
-
                 pdfDoc.Add(jpg);
                 pdfDoc.Add(pdfTable1);
                 pdfDoc.Add(new Paragraph("Informations client : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
@@ -231,6 +242,7 @@ namespace Progray
                 pdfDoc.Add(pdfCadre);
                 pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                 pdfDoc.NewPage();
+                pdfDoc.Add(pdfText);
                 pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                 pdfDoc.Add(pdfTarif);
                 pdfDoc.NewPage();
@@ -240,5 +252,7 @@ namespace Progray
 
             }
         }
+
+        
     }
 }

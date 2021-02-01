@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Progray
 {
@@ -61,9 +63,21 @@ namespace Progray
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            Materiel materiel = (Materiel)dgVoirMateriel.SelectedItem;
-            idMateriel = materiel.IdMateriel;
-            materielAdo.delete(idMateriel);
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Materiel materiel = (Materiel)dgVoirMateriel.SelectedItem;
+                idMateriel = materiel.IdMateriel;
+                materielAdo.delete(idMateriel);
+
+                dgVoirMateriel.ItemsSource = null;
+                dgVoirMateriel.ItemsSource = materielAdo.all();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
+            
         }
 
         private void btnValider_Click(object sender, RoutedEventArgs e)
@@ -71,6 +85,9 @@ namespace Progray
             gridMateriel.Visibility = Visibility.Hidden;
             grid.Visibility = Visibility.Visible;
             materielAdo.update(tbxType.Text, idMateriel);
+
+            dgVoirMateriel.ItemsSource = null;
+            dgVoirMateriel.ItemsSource = materielAdo.all();
         }
     }
 }

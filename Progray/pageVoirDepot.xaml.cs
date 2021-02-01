@@ -28,7 +28,8 @@ namespace Progray
     /// </summary>
     public partial class pageVoirDepot : Page
     {
-
+        List<Marque> marques;
+        List<Materiel> materiels;
         int idDepot = 0;
         int idProbleme = 0;
         Depot depot;
@@ -39,9 +40,19 @@ namespace Progray
             dgDepotAll.ItemsSource = depotAdo.all();
             cbxDelai.ItemsSource = delai;
 
+            this.marques = marqueAdo.all();
+            cbxMarque.ItemsSource = null;
+            cbxMarque.ItemsSource = this.marques;
+
+            this.materiels = materielAdo.all();
+            cbxMateriel.ItemsSource = null;
+            cbxMateriel.ItemsSource = this.materiels;
+
             gridModifier.Visibility = Visibility.Hidden;
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
+
+            
 
             
 
@@ -64,10 +75,6 @@ namespace Progray
             
         }
 
-        private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
 
         private void cbxDelai_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -98,18 +105,35 @@ namespace Progray
             gridModifier.Visibility = Visibility.Hidden;
             grid.Visibility = Visibility.Visible;
 
+
+
             depotAdo.update(cbxDelai.Text, idDepot);
             depotAdo.updateTache(tbxNumSerie.Text, tbxTache.Text, idDepot);
             depotAdo.updateProbleme(tbxProbleme.Text, idDepot);
+
+            dgDepotAll.ItemsSource = null;
+            dgDepotAll.ItemsSource = depotAdo.all();
 
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
-            Depot depot = (Depot)dgDepotAll.SelectedItem;
-            idDepot = depot.idDepot;
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Depot depot = (Depot)dgDepotAll.SelectedItem;
+                idDepot = depot.idDepot;
 
-            depotAdo.delete(idDepot);
+                depotAdo.delete(idDepot);
+
+                dgDepotAll.ItemsSource = null;
+                dgDepotAll.ItemsSource = depotAdo.all();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+
+            }
+            
 
         }
 
@@ -118,6 +142,32 @@ namespace Progray
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Client.Nom.Contains(tbxRecherche.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
+
+          
+        }
+
+        private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Marque marque = (Marque)cbxMarque.SelectedItem;
+
+
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Marque.Nom.Contains(marque.Nom));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Materiel materiel = (Materiel)cbxMateriel.SelectedItem;
+
+
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Materiel.TypeMateriel.Contains(materiel.TypeMateriel));
             Itemlist.Filter = yourCostumFilter;
             dgDepotAll.ItemsSource = Itemlist;
         }

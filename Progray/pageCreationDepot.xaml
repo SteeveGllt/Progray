@@ -25,6 +25,8 @@
             <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="183" Margin="119,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="447"/>
             <Label Content="N° Série :" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNumSerie" HorizontalAlignment="Left" Height="23" Margin="500,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="193"/>
+            <Label x:Name="lblModele" Content="Modele" HorizontalAlignment="Left" Margin="516,74,0,0" VerticalAlignment="Top" Width="56" FontWeight="Bold"/>
+            <ComboBox x:Name="cbxModele" HorizontalAlignment="Left" Margin="580,78,0,0" VerticalAlignment="Top" Width="113" SelectionChanged="cbxModele_SelectionChanged"/>
         </Grid>
 
     </Grid>

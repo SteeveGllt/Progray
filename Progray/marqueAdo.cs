@@ -36,6 +36,7 @@ namespace Progray
             }
             return marque;
         }
+    
         public static List<Marque> all()
         {
             try

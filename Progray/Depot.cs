@@ -18,8 +18,9 @@ namespace Progray
         private string delai;
         private string tache;
         private string numSerie;
-
         private string probleme;
+
+        private string modele;
 
         public int idDepot { get => IDDEPOT; set => IDDEPOT = value; }
         public Client Client { get => client; set => client = value; }
@@ -30,6 +31,7 @@ namespace Progray
         public DateTime DateDepot { get => dateDepot; set => dateDepot = value; }
         public string Delai { get => delai; set => delai = value; }
         public string Tache { get => tache; set => tache = value; }
+        public string Modele { get => modele; set => modele = value; }
 
         public Depot()
         {
@@ -89,6 +91,7 @@ namespace Progray
             this.tache = uneTache;
 
         }
+
         public Client getClient()
         {
             return this.client;

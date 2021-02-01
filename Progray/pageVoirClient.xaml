@@ -9,33 +9,34 @@
       Title="pageVoirClient">
 
     <Grid x:Name="grid">
-
-        <DataGrid x:Name="dgClientAll" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="574" SelectionChanged="dgClientAll_SelectionChanged" CanUserAddRows="False"/>
-        <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="646,92,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
-        <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="646,154,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
-        <Grid x:Name="gridTest" HorizontalAlignment="Left" Height="181" VerticalAlignment="Top" Width="800" Margin="0,179,0,0" d:IsHidden="True">
-            <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="127,-71,0,0" VerticalAlignment="Top" Width="84" FontWeight="Bold" Height="26"/>
-            <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="319,-75,0,0" VerticalAlignment="Top" Width="88" FontWeight="Bold"/>
-            <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="500,-71,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold"/>
-            <TextBox x:Name="tbxNom" HorizontalAlignment="Left" Height="23" Margin="286,-35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="121"/>
-            <TextBox x:Name="tbxPrenom" HorizontalAlignment="Left" Height="23" Margin="489,-35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114"/>
-            <TextBox x:Name="tbxAdresse" HorizontalAlignment="Left" Height="26" Margin="229,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
-            <TextBox x:Name="tbxCp" HorizontalAlignment="Left" Height="23" Margin="173,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="tbxVille" HorizontalAlignment="Left" Height="23" Margin="449,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="tbxTelephone" HorizontalAlignment="Left" Height="23" Margin="205,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="tbxMobile" HorizontalAlignment="Left" Height="23" Margin="501,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox x:Name="tbxMail" HorizontalAlignment="Left" Height="22" Margin="205,177,0,-18" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
-            <Label x:Name="lblAdresse" Content="Adresse" HorizontalAlignment="Left" Height="26" Margin="109,18,0,0" VerticalAlignment="Top" Width="88" FontWeight="Bold"/>
-            <Label x:Name="lblCp" Content="CP" HorizontalAlignment="Left" Height="28" Margin="109,68,0,0" VerticalAlignment="Top" Width="32" FontWeight="Bold"/>
-            <Label x:Name="lblVille" Content="Ville" HorizontalAlignment="Left" Margin="376,70,0,0" VerticalAlignment="Top" Width="73" FontWeight="Bold" Height="26"/>
-            <Label x:Name="lblTelephone" Content="Téléphone" HorizontalAlignment="Left" Margin="109,126,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26"/>
-            <Label x:Name="lblMobile" Content="Téléphone Mobile" HorizontalAlignment="Left" Margin="377,122,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.473,1.148" FontWeight="Bold" Height="27"/>
-            <Label x:Name="lblMail" Content="Mail" HorizontalAlignment="Left" Margin="109,174,0,-18" VerticalAlignment="Top" FontWeight="Bold" Height="25"/>
-            <Rectangle Fill="#FFF5F5F4" HorizontalAlignment="Left" Height="354" Stroke="Black" VerticalAlignment="Top" Width="800" Panel.ZIndex="-2" Margin="0,-88,0,-85"/>
-            <Label Content="Statut" HorizontalAlignment="Left" Margin="425,177,0,-21" VerticalAlignment="Top" FontWeight="Bold" Height="25"/>
-            <Button Content="Modifier" HorizontalAlignment="Left" Margin="627,235,0,-74" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="20"/>
-            <ComboBox x:Name="cbxTitre" HorizontalAlignment="Left" Margin="109,-33,0,0" VerticalAlignment="Top" Width="120" Height="21"/>
-            <ComboBox x:Name="cbxStatut" HorizontalAlignment="Left" Margin="501,178,0,-18" VerticalAlignment="Top" Width="120" Height="21"/>
+        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="430" Margin="10,10,-69,0" VerticalAlignment="Top" Width="859" d:IsHidden="True">
+            <DataGrid x:Name="dgClientAll" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="743" SelectionChanged="dgClientAll_SelectionChanged" CanUserAddRows="False"/>
+            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="763,38,-58,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="763,100,-58,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        </Grid>
+        <Grid x:Name="gridModif" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="800" Margin="0,10,0,0" Panel.ZIndex="-1">
+            <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="129,30,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" Height="26"/>
+            <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="316,26,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold"/>
+            <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="493,30,0,0" VerticalAlignment="Top" Width="100" FontWeight="Bold"/>
+            <TextBox x:Name="tbxNom" HorizontalAlignment="Left" Height="23" Margin="284,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+            <TextBox x:Name="tbxPrenom" HorizontalAlignment="Left" Height="23" Margin="482,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112"/>
+            <TextBox x:Name="tbxAdresse" HorizontalAlignment="Left" Height="26" Margin="229,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246"/>
+            <TextBox x:Name="tbxCp" HorizontalAlignment="Left" Height="23" Margin="174,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+            <TextBox x:Name="tbxVille" HorizontalAlignment="Left" Height="23" Margin="443,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+            <TextBox x:Name="tbxTelephone" HorizontalAlignment="Left" Height="23" Margin="205,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+            <TextBox x:Name="tbxMobile" HorizontalAlignment="Left" Height="23" Margin="494,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117"/>
+            <TextBox x:Name="tbxMail" HorizontalAlignment="Left" Height="22" Margin="205,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"/>
+            <ComboBox x:Name="cbxStatut" HorizontalAlignment="Left" Margin="494,279,0,0" VerticalAlignment="Top" Width="117" Height="21"/>
+            <Label x:Name="lblAdresse" Content="Adresse" HorizontalAlignment="Left" Height="26" Margin="111,119,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold"/>
+            <Label x:Name="lblCp" Content="CP" HorizontalAlignment="Left" Height="28" Margin="111,169,0,0" VerticalAlignment="Top" Width="32" FontWeight="Bold"/>
+            <Label x:Name="lblVille" Content="Ville" HorizontalAlignment="Left" Margin="372,171,0,0" VerticalAlignment="Top" Width="71" FontWeight="Bold" Height="26"/>
+            <Label x:Name="lblTelephone" Content="Téléphone" HorizontalAlignment="Left" Margin="111,227,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="67"/>
+            <Label x:Name="lblMobile" Content="Téléphone Mobile" HorizontalAlignment="Left" Margin="373,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.473,1.148" FontWeight="Bold" Height="27" Width="116"/>
+            <Label x:Name="lblMail" Content="Mail" HorizontalAlignment="Left" Margin="111,275,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="25" Width="35"/>
+            <Rectangle Fill="#FFF5F5F4" HorizontalAlignment="Left" Height="354" Stroke="Black" VerticalAlignment="Top" Width="781" Panel.ZIndex="-2" Margin="-1,-1,0,0"/>
+            <Label Content="Statut" HorizontalAlignment="Left" Margin="420,278,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="25" Width="43"/>
+            <Button Content="Modifier" HorizontalAlignment="Left" Margin="624,320,0,0" VerticalAlignment="Top" Width="73" Click="Button_Click" Height="20"/>
+            <ComboBox x:Name="cbxTitre" HorizontalAlignment="Left" Margin="111,68,0,0" VerticalAlignment="Top" Width="118" Height="21"/>
         </Grid>
 
     </Grid>

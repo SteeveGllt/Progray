@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Progray
 {
@@ -68,25 +70,31 @@ namespace Progray
             gridMarque.Visibility = Visibility.Hidden;
             marqueAdo.update(tbxNomMarque.Text, idMarque);
             modeleAdo.update(tbxModele.Text, idMarque);
+
+            dgVoirMarque.ItemsSource = null;
+            dgVoirMarque.ItemsSource = marqueAdo.all();
         }
 
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
            
 
-            Marque marque = (Marque)dgVoirMarque.SelectedItem;
-            idMarque = marque.idMarque;
-            marqueAdo.delete(idMarque);
+            
 
-            //DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
-            //if (dialogResult == DialogResult.Yes)
-            //{
+            DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Marque marque = (Marque)dgVoirMarque.SelectedItem;
+                idMarque = marque.idMarque;
+                marqueAdo.delete(idMarque);
 
-            //}
-            //else if (dialogResult == DialogResult.No)
-            //{
+                dgVoirMarque.ItemsSource = null;
+                dgVoirMarque.ItemsSource = marqueAdo.all();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
 
-            //}
+            }
         }
     }
 }
