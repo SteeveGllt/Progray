@@ -11,6 +11,7 @@ namespace Progray
     {
 
         private int IDDEPOT;
+        //private Modele modele
         private Marque marque;
         private Client client;
         private Materiel materiel;
@@ -20,7 +21,6 @@ namespace Progray
         private string numSerie;
         private string probleme;
 
-        private string modele;
 
         public int idDepot { get => IDDEPOT; set => IDDEPOT = value; }
         public Client Client { get => client; set => client = value; }
@@ -31,13 +31,13 @@ namespace Progray
         public DateTime DateDepot { get => dateDepot; set => dateDepot = value; }
         public string Delai { get => delai; set => delai = value; }
         public string Tache { get => tache; set => tache = value; }
-        public string Modele { get => modele; set => modele = value; }
 
         public Depot()
         {
             
 
         }
+        //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai)
         public Depot(Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai)
         {
             this.IDDEPOT = 0;
@@ -48,6 +48,7 @@ namespace Progray
             this.delai = unDelai;
             
         }
+        //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
         public Depot(Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
         {
             this.IDDEPOT = 0;
@@ -59,6 +60,7 @@ namespace Progray
             this.numSerie = unNumSerie;
 
         }
+        //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
         public Depot(int unId, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
         {
             this.IDDEPOT = unId;
@@ -68,8 +70,10 @@ namespace Progray
             this.dateDepot = DateTime.Now;
             this.delai = unDelai;
             this.probleme = unProbleme;
+            
 
         }
+        //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
         public Depot(int unId, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
         {
             this.IDDEPOT = unId;

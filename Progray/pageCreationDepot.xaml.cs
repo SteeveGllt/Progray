@@ -97,9 +97,11 @@ namespace Progray
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Marque marque = (Marque)(cbxMarque.SelectedItem);
+            //Modele modele = (Modele)(cbxModele.SelectedItem);
             Client client = (Client)(cbxClient.SelectedItem);
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
             Depot d = new Depot(marque, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
+            //Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
             depot = depotAdo.createDepot(d);
 
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);

@@ -69,7 +69,6 @@ namespace Progray
             grid.Visibility = Visibility.Visible;
             gridMarque.Visibility = Visibility.Hidden;
             marqueAdo.update(tbxNomMarque.Text, idMarque);
-            modeleAdo.update(tbxModele.Text, idMarque);
 
             dgVoirMarque.ItemsSource = null;
             dgVoirMarque.ItemsSource = marqueAdo.all();

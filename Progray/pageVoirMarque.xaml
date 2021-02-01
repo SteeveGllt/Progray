@@ -13,8 +13,6 @@
             <Label Content="Nom de la marque :" HorizontalAlignment="Left" Margin="112,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNomMarque" HorizontalAlignment="Left" Height="23" Margin="249,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Content="Valider" HorizontalAlignment="Left" Margin="362,126,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-            <Label Content="Modèle :" HorizontalAlignment="Left" Height="28" Margin="168,61,0,0" VerticalAlignment="Top" Width="65" FontWeight="Bold"/>
-            <TextBox x:Name="tbxModele" HorizontalAlignment="Left" Height="23" Margin="249,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
         <Grid x:Name="grid" HorizontalAlignment="Left" Height="182" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" d:IsHidden="True">
             <DataGrid x:Name="dgVoirMarque" HorizontalAlignment="Center" Height="172" VerticalAlignment="Top" Width="210" Margin="104,10,466,0" SelectionChanged="dgVoirMarque_SelectionChanged" CanUserAddRows="False"/>
