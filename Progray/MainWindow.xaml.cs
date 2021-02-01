@@ -146,11 +146,11 @@ namespace Progray
         //Bouton pour valider le dépôt
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Marque marque = (Marque)(cbxMarque.SelectedItem);
-            Client client = (Client)(cbxClient.SelectedItem);
-            Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
-            Depot d = new Depot(marque, client, materiel, tbxDelai.Text);
-            depot = depotAdo.createDepot(d);
+            //Marque marque = (Marque)(cbxMarque.SelectedItem);
+            //Client client = (Client)(cbxClient.SelectedItem);
+            //Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
+            //Depot d = new Depot(marque, client, materiel, tbxDelai.Text);
+            //depot = depotAdo.createDepot(d);
             
 
             gridDepot.Visibility = Visibility.Hidden;

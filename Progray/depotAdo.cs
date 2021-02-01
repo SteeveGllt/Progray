@@ -17,8 +17,8 @@ namespace Progray
                 List<Depot> depots = new List<Depot>();
                 MySqlDataReader reader; // Contiendra les données
                 open();
-                MySqlCommand requete = new MySqlCommand("SELECT * FROM (((depot d inner join marque m on d.IDMARQUE = m.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
-                //MySqlCommand requete = new MySqlCommand("SELECT * FROM((((depot d inner join modele m on d.CODE = m.CODE) inner join marque ma on m.IDMARQUE = ma.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
+                //MySqlCommand requete = new MySqlCommand("SELECT * FROM (((depot d inner join marque m on d.IDMARQUE = m.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
+                MySqlCommand requete = new MySqlCommand("SELECT * FROM((((depot d inner join modele m on d.CODE = m.CODE) inner join marque ma on m.IDMARQUE = ma.IDMARQUE) inner join client c on d.IDCLIENT = c.IDCLIENT) inner join materiel mat on d.IDMATERIEL = mat.IDMATERIEL) inner join probleme p on d.IDDEPOT = p.IDDEPOT ORDER BY NOM");
                 requete.Connection = conn; // Connexion instanciée auparavant
                 reader = requete.ExecuteReader(); // Exécution de la requête SQL
                 while (reader.Read())
@@ -27,9 +27,9 @@ namespace Progray
                     string numSerie = "";
                     Marque marque = new Marque();
                     marque.Nom = (string)reader["NOMMARQUE"];
-                    
-                    //Modele modele = new Modele();
-                    //modele.Model = (string)reader["MODELE"];
+
+                    Modele modele = new Modele();
+                    modele.Model = (string)reader["MODELE"];
 
                     Materiel materiel = new Materiel();
                     materiel.TypeMateriel = (string)reader["TYPEMATERIEL"];
@@ -45,8 +45,8 @@ namespace Progray
                         numSerie = reader.GetString(7);
                     }
 
-                    Depot depot = new Depot((Int32)reader["IDDEPOT"], marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
-                    //Depot depot = new Depot((Int32)reader["IDDEPOT"], modele, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
+                    //Depot depot = new Depot((Int32)reader["IDDEPOT"], marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
+                    Depot depot = new Depot((Int32)reader["IDDEPOT"], modele, marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
                     depots.Add(depot);
                 }
                 reader.Close();
@@ -73,11 +73,11 @@ namespace Progray
                 open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO depot(IDMARQUE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@IDMARQUE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
-                //cmd.CommandText = "INSERT INTO depotCODE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@CODE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
+                //cmd.CommandText = "INSERT INTO depot(IDMARQUE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@IDMARQUE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
+                cmd.CommandText = "INSERT INTO depot(CODE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@CODE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
                 cmd.Prepare();
-                cmd.Parameters.AddWithValue("@IDMARQUE", d.Marque.idMarque);
-                //cmd.Parameters.AddWithValue("@IDMARQUE", d.Modele.Code);
+                //cmd.Parameters.AddWithValue("@IDMARQUE", d.Marque.idMarque);
+                cmd.Parameters.AddWithValue("@CODE", d.Modele.Code);
                 cmd.Parameters.AddWithValue("@IDCLIENT", d.Client.idClient);
                 cmd.Parameters.AddWithValue("@IDMATERIEL", d.Materiel.IdMateriel);
                 cmd.Parameters.AddWithValue("@DATEDEPOT", d.DateDepot);

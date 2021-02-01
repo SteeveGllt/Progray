@@ -96,12 +96,12 @@ namespace Progray
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Marque marque = (Marque)(cbxMarque.SelectedItem);
-            //Modele modele = (Modele)(cbxModele.SelectedItem);
+            //Marque marque = (Marque)(cbxMarque.SelectedItem);
+            Modele modele = (Modele)(cbxModele.SelectedItem);
             Client client = (Client)(cbxClient.SelectedItem);
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
-            Depot d = new Depot(marque, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
-            //Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
+            //Depot d = new Depot(marque, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
+            Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
             depot = depotAdo.createDepot(d);
 
             Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
@@ -182,7 +182,7 @@ namespace Progray
             pdfTableText.AddCell(new Phrase("MATERIEL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTableText.AddCell(new Phrase(depot.Materiel.TypeMateriel));
             pdfTableText.AddCell(new Phrase("MARQUE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(depot.Marque.Nom));
+            pdfTableText.AddCell(new Phrase(depot.Modele.Marque.Nom + " - " + "Modèle : " + depot.Modele.Model));
             pdfTableText.AddCell(new Phrase("DELAI", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
             pdfTableText.AddCell(new Phrase(depot.Delai));
             pdfTableText.AddCell(new Phrase("DATE DEPOT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));

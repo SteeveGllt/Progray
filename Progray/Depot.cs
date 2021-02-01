@@ -11,7 +11,7 @@ namespace Progray
     {
 
         private int IDDEPOT;
-        //private Modele modele
+        private Modele modele;
         private Marque marque;
         private Client client;
         private Materiel materiel;
@@ -26,11 +26,13 @@ namespace Progray
         public Client Client { get => client; set => client = value; }
         public Materiel Materiel { get => materiel; set => materiel = value; }
         public Marque Marque { get => marque; set => marque = value; }
+        public Modele Modele { get => modele; set => modele = value; }
         public string NumSerie { get => numSerie; set => numSerie = value; }
         public string Probleme { get => probleme; set => probleme = value; }
         public DateTime DateDepot { get => dateDepot; set => dateDepot = value; }
         public string Delai { get => delai; set => delai = value; }
         public string Tache { get => tache; set => tache = value; }
+        
 
         public Depot()
         {
@@ -38,10 +40,10 @@ namespace Progray
 
         }
         //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai)
-        public Depot(Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai)
+        public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai)
         {
             this.IDDEPOT = 0;
-            this.marque = uneMarque;
+            this.modele = unModele;
             this.client = unClient;
             this.materiel = unMateriel;
             this.dateDepot = DateTime.Now;
@@ -49,10 +51,10 @@ namespace Progray
             
         }
         //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
-        public Depot(Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
+        public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
         {
             this.IDDEPOT = 0;
-            this.marque = uneMarque;
+            this.modele = unModele;
             this.client = unClient;
             this.materiel = unMateriel;
             this.dateDepot = DateTime.Now;
@@ -61,10 +63,10 @@ namespace Progray
 
         }
         //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
-        public Depot(int unId, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
+        public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
         {
             this.IDDEPOT = unId;
-            this.marque = uneMarque;
+            this.modele = unModele;
             this.client = unClient;
             this.Materiel = unMateriel;
             this.dateDepot = DateTime.Now;
@@ -74,9 +76,10 @@ namespace Progray
 
         }
         //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
-        public Depot(int unId, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
+        public Depot(int unId, Modele unModele, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
         {
             this.IDDEPOT = unId;
+            this.modele = unModele;
             this.marque = uneMarque;
             this.client = unClient;
             this.materiel = unMateriel;
