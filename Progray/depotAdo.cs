@@ -45,8 +45,10 @@ namespace Progray
                         numSerie = reader.GetString(7);
                     }
 
+ 
+
                     //Depot depot = new Depot((Int32)reader["IDDEPOT"], marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
-                    Depot depot = new Depot((Int32)reader["IDDEPOT"], modele, marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie);
+                    Depot depot = new Depot((Int32)reader["IDDEPOT"], modele, marque, client, materiel, (string)reader["DELAI"], (string)reader["DESCRIPTION"], tache, numSerie, (string)reader["NumPdf"]);
                     depots.Add(depot);
                 }
                 reader.Close();
@@ -64,6 +66,7 @@ namespace Progray
                 close();
             }
         }
+
        
         public static Depot createDepot(Depot d)
         {
@@ -74,7 +77,7 @@ namespace Progray
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 //cmd.CommandText = "INSERT INTO depot(IDMARQUE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@IDMARQUE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
-                cmd.CommandText = "INSERT INTO depot(CODE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE) VALUES(@CODE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE)";
+                cmd.CommandText = "INSERT INTO depot(CODE, IDCLIENT, IDMATERIEL, DATEDEPOT, DELAI, TACHE, NUMSERIE, NumPdf) VALUES(@CODE, @IDCLIENT, @IDMATERIEL, @DATEDEPOT, @DELAI, @TACHE, @NUMSERIE, @NumPdf)";
                 cmd.Prepare();
                 //cmd.Parameters.AddWithValue("@IDMARQUE", d.Marque.idMarque);
                 cmd.Parameters.AddWithValue("@CODE", d.Modele.Code);
@@ -84,6 +87,7 @@ namespace Progray
                 cmd.Parameters.AddWithValue("@DELAI", d.Delai);
                 cmd.Parameters.AddWithValue("@TACHE", d.Tache);
                 cmd.Parameters.AddWithValue("@NUMSERIE", d.NumSerie);
+                cmd.Parameters.AddWithValue("@NumPdf", d.NumIdentifiantPdf);
                 cmd.ExecuteNonQuery();
                 id = cmd.LastInsertedId;
                 Console.WriteLine("Dépôt crée");
@@ -99,6 +103,7 @@ namespace Progray
             return d;
 
         }
+        
         public static void update(string unDelai, int unId)
         {
             try
@@ -203,6 +208,26 @@ namespace Progray
 
             }
 
+        }
+        public static void insertNum(string d)
+        {
+
+            try
+            {
+                open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "INSERT INTO depot(NumPdf) VALUES(@NumPdf)";
+                cmd.Prepare();
+                cmd.Parameters.AddWithValue("@NumPdf", d);
+                cmd.ExecuteNonQuery();
+                close();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
         }
 
     }

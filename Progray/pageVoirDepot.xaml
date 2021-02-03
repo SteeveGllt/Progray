@@ -24,8 +24,8 @@
             <Label Content="N° Série :" HorizontalAlignment="Left" Margin="373,84,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNumSerie" HorizontalAlignment="Left" Height="23" Margin="450,84,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid" HorizontalAlignment="Left" Height="297" Margin="10,10,0,0" VerticalAlignment="Top" Width="1038">
-            <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="180" Margin="10,107,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="dgDepotAll_SelectionChanged" CanUserAddRows="False"/>
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="1038">
+            <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="308" Margin="10,107,0,-118" VerticalAlignment="Top" Width="565" SelectionChanged="dgDepotAll_SelectionChanged" CanUserAddRows="False"/>
             <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="640,156,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
             <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="640,217,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
             <Label Content="Recherche par Nom :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -34,6 +34,10 @@
             <ComboBox x:Name="cbxMarque" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top" Width="163" SelectionChanged="cbxMarque_SelectionChanged"/>
             <Label Content="Recherche par Matériel :" HorizontalAlignment="Left" Margin="592,10,0,0" VerticalAlignment="Top" Width="152" FontWeight="Bold"/>
             <ComboBox x:Name="cbxMateriel" HorizontalAlignment="Left" Margin="749,10,0,0" VerticalAlignment="Top" Width="163" SelectionChanged="ComboBox_SelectionChanged"/>
+            <Label Content="Recherche par n°série :" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Width="144" FontWeight="Bold"/>
+            <TextBox x:Name="tbxRechercheNumSerie" HorizontalAlignment="Left" Height="23" Margin="159,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" TextChanged="tbxRechercheNumSerie_TextChanged"/>
+            <Label Content="Recherche par N°Idfentifiant PDF :" HorizontalAlignment="Left" Margin="326,58,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox x:Name="tbxNumIdentifiant" HorizontalAlignment="Left" Height="23" Margin="557,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" TextChanged="tbxNumIdentifiant_TextChanged"/>
         </Grid>
 
     </Grid>

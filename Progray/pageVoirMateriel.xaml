@@ -9,15 +9,17 @@
       Title="pageVoirMateriel">
 
     <Grid>
-        <Grid x:Name="gridMateriel" HorizontalAlignment="Left" Height="120" Margin="206,27,0,0" VerticalAlignment="Top" Width="320" Panel.ZIndex="-1">
+        <Grid x:Name="gridMateriel" HorizontalAlignment="Left" Height="120" Margin="206,27,0,0" VerticalAlignment="Top" Width="320" Panel.ZIndex="-1" d:IsHidden="True">
             <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbxType" HorizontalAlignment="Left" Height="23" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="232,84,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>
         </Grid>
         <Grid x:Name="grid" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
-            <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="225" VerticalAlignment="Top" Width="214" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="64,10,502,0" CanUserAddRows="False"/>
-            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="520,67,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
-            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="520,129,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+            <DataGrid x:Name="dgVoirMateriel" HorizontalAlignment="Center" Height="176" VerticalAlignment="Top" Width="183" SelectionChanged="dgVoirMateriel_SelectionChanged" Margin="56,57,541,0" CanUserAddRows="False"/>
+            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="448,130,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="448,192,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+            <TextBox x:Name="tbxRecherche" HorizontalAlignment="Left" Height="23" Margin="210,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="tbxRecherche_TextChanged"/>
+            <Label Content="Rechercher :" HorizontalAlignment="Left" Margin="102,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         </Grid>
 
     </Grid>

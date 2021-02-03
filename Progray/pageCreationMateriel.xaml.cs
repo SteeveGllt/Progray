@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZXing;
 
 namespace Progray
 {
@@ -27,9 +29,25 @@ namespace Progray
 
         private void btnTypeMateriel_Click(object sender, RoutedEventArgs e)
         {
-            Materiel m = new Materiel(0, tbxTypeMateriel.Text);
-            //on ajoute le nouveau client en base de données
-            materielAdo.createMateriel(m);
+            //Erreur en cas de validation sans avoir rentré de matériel
+            if(tbxTypeMateriel.Text == "")
+            {
+                MessageBox.Show("Veuillez remplir les champs");
+                lblMateriel.Foreground = Brushes.Red;
+            }
+            else
+            {
+                //Permet de mettre la première lettre en majuscule
+                string oldString = tbxTypeMateriel.Text;
+                string newString = oldString[0].ToString().ToUpper() + oldString.Substring(1).ToLower();
+
+                //Création d'un nouveau matériel
+                Materiel m = new Materiel(0, newString);
+                //on ajoute le nouveau client en base de données
+                materielAdo.createMateriel(m);
+            }
+            
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,6 +95,15 @@ namespace Progray
             {
 
             }
+        }
+
+        private void tbxRecherche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _itemSourceList = new CollectionViewSource() { Source = marqueAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Marque)item).Nom.Contains(tbxRecherche.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgVoirMarque.ItemsSource = Itemlist;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Progray
     {
         int idClient = 0;
         int idDepot = 0;
+        List<Client> clients;
         Depot depot = new Depot();
 
         string[] titre = new string[] { "Monsieur", "Madame" };
@@ -40,6 +42,7 @@ namespace Progray
             cbxStatut.ItemsSource = statut;
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
+
 
         }
 
@@ -121,6 +124,15 @@ namespace Progray
 
             
             
+        }
+
+        private void tbxClient_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _itemSourceList = new CollectionViewSource() { Source = clientAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Client)item).Nom.Contains(tbxClient.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgClientAll.ItemsSource = Itemlist;
         }
     }
 }

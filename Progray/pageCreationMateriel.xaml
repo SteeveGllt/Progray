@@ -9,9 +9,11 @@
       Title="pageCreationMateriel">
 
     <Grid>
-        <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="102,44,0,0" VerticalAlignment="Top" Height="29" Width="110" FontWeight="Bold"/>
-        <TextBox x:Name="tbxTypeMateriel" HorizontalAlignment="Left" Height="21" Margin="238,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="btnTypeMateriel" Content="Créer" HorizontalAlignment="Left" Margin="264,96,0,0" VerticalAlignment="Top" Width="80" Click="btnTypeMateriel_Click" Height="27"/>
-
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="440" Margin="10,10,0,0" VerticalAlignment="Top" Width="790">
+            <Label x:Name="lblMateriel" Content="Type de matériel" HorizontalAlignment="Left" Margin="102,44,0,0" VerticalAlignment="Top" Height="29" Width="110" FontWeight="Bold"/>
+            <TextBox x:Name="tbxTypeMateriel" HorizontalAlignment="Left" Height="21" Margin="238,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128"/>
+            <Button x:Name="btnTypeMateriel" Content="Créer" HorizontalAlignment="Left" Margin="264,96,0,0" VerticalAlignment="Top" Width="80" Click="btnTypeMateriel_Click" Height="21"/>
+        </Grid>
     </Grid>
+
 </Page>

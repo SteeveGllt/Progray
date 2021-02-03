@@ -26,6 +26,7 @@ namespace Progray
         public pageAjoutModele()
         {
             InitializeComponent();
+            //Remplit la combobox de toutes les marques dans la base de données
             this.marques = marqueAdo.all();
             cbxMarque.ItemsSource = null;
             cbxMarque.ItemsSource = this.marques;
@@ -33,15 +34,28 @@ namespace Progray
 
         private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Récupère l'ID de la marque sélectionnée
             Marque marque = (Marque)cbxMarque.SelectedItem;
             idMarque = marque.idMarque;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Marque marque = (Marque)cbxMarque.SelectedItem;
-            Modele mod = new Modele(0, tbxModele.Text, marque);
-            modele = modeleAdo.createModel(mod);
+            //Erreur en cas de validation sans la marque et/ou le modele
+            if(cbxMarque.Text == "" || tbxModele.Text == "")
+            {
+                MessageBox.Show("Veuillez remplir les champs");
+                lblMarque.Foreground = Brushes.Red;
+                lblModele.Foreground = Brushes.Red;
+            }
+            else
+            {
+                //Création du modele et ajout dans la base de données
+                Marque marque = (Marque)cbxMarque.SelectedItem;
+                Modele mod = new Modele(0, tbxModele.Text, marque);
+                modele = modeleAdo.createModel(mod);
+            }
+            
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using QRCoder;
+using BarcodeLib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,13 +14,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZXing;
+using Clipboard = System.Windows.Forms.Clipboard;
 using Paragraph = iTextSharp.text.Paragraph;
-
 namespace Progray
 {
     /// <summary>
@@ -60,17 +65,28 @@ namespace Progray
         private void cbxClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Client client = (Client)(cbxClient.SelectedItem);
+            if (cbxClient.Text != null)
+            {
+                lblClient.Foreground = Brushes.Black;
+            }
+
+
         }
 
         private void cbxMateriel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
+            if (cbxMateriel.Text != null)
+            {
+                lblMateriel.Foreground = Brushes.Black;
+            }
         }
 
         private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(cbxMarque != null)
             {
+                lblMarque.Foreground = Brushes.Black;
                 Marque marque = (Marque)(cbxMarque.SelectedItem);
                 lblModele.Visibility = Visibility.Visible;
                 cbxModele.Visibility = Visibility.Visible;
@@ -90,171 +106,263 @@ namespace Progray
         }
         private void cbxModele_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cbxModele.Text != null)
+            {
+                lblModele.Foreground = Brushes.Black;
+            }
         }
-
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Marque marque = (Marque)(cbxMarque.SelectedItem);
+          
+
             Modele modele = (Modele)(cbxModele.SelectedItem);
             Client client = (Client)(cbxClient.SelectedItem);
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
-            //Depot d = new Depot(marque, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
-            Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text);
-            depot = depotAdo.createDepot(d);
 
-            Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
-            problemeAdo.createProbleme(probleme);
-
-            PdfPTable pdfTableBlank = new PdfPTable(1);
-
-            PdfPTable pdfTable1 = new PdfPTable(1);
-            PdfPTable pdfTable2 = new PdfPTable(1);
-            PdfPTable pdfTable3 = new PdfPTable(2);
-            PdfPTable pdfTableText = new PdfPTable(2);
-            PdfPTable pdfTarif = new PdfPTable(1);
-            PdfPTable pdfCadre = new PdfPTable(1);
-            PdfPTable pdfImage = new PdfPTable(1);
-            PdfPTable pdfText = new PdfPTable(1);
-
-            System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
-
-            pdfTable1.WidthPercentage = 80;
-            pdfTable1.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            pdfTable1.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
-            pdfTable1.DefaultCell.BorderWidth = 0;
-            pdfTable1.DefaultCell.Padding = 10;
-
-
-            pdfTable3.DefaultCell.Padding = 5;
-            pdfTable3.WidthPercentage = 80;
-            pdfTable3.DefaultCell.BorderWidth = 0.5f;
-
-            pdfTableText.DefaultCell.Padding = 5;
-            pdfTableText.WidthPercentage = 80;
-            pdfTableText.DefaultCell.BorderWidth = 0.5f;
-
-            pdfTarif.DefaultCell.Padding = 5;
-            pdfTarif.WidthPercentage = 80;
-            pdfTarif.DefaultCell.BorderWidth = 0.5f;
-            pdfTarif.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
-
-            pdfCadre.DefaultCell.Padding = 5;
-            pdfCadre.WidthPercentage = 80;
-            pdfCadre.DefaultCell.BorderWidth = 0.5f;
-            pdfCadre.DefaultCell.FixedHeight = 150f;
-
-            pdfText.DefaultCell.Padding = 5;
-            pdfText.WidthPercentage = 80;
-            pdfText.DefaultCell.BorderWidth = 0.5f;
-            pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
-
-            string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\test.png";
-            iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
-            jpg.ScaleToFit(250f, 150f);
-            jpg.Alignment = Element.ALIGN_CENTER;
-
-            Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
-            pdfTable1.AddCell(p1);
-
-            pdfTable3.AddCell(new Phrase("TITRE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Titre));
-            pdfTable3.AddCell(new Phrase("NOM CLIENT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Nom));
-            pdfTable3.AddCell(new Phrase("PRENOM CLIENT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Prenom));
-            pdfTable3.AddCell(new Phrase("ADRESSE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Adresse));
-            pdfTable3.AddCell(new Phrase("CODE POSTAL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Cp));
-            pdfTable3.AddCell(new Phrase("VILLE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Ville));
-            pdfTable3.AddCell(new Phrase("TELEPHONE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Telephone));
-            pdfTable3.AddCell(new Phrase("MOBILE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Mobile));
-            pdfTable3.AddCell(new Phrase("ADRESSE MAIL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.AdresseMail));
-            pdfTable3.AddCell(new Phrase("STATUT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTable3.AddCell(new Phrase(depot.Client.Statut));
-
-            pdfTableText.AddCell(new Phrase("MATERIEL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(depot.Materiel.TypeMateriel));
-            pdfTableText.AddCell(new Phrase("MARQUE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(depot.Modele.Marque.Nom + " - " + "Modèle : " + depot.Modele.Model));
-            pdfTableText.AddCell(new Phrase("DELAI", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(depot.Delai));
-            pdfTableText.AddCell(new Phrase("DATE DEPOT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(Convert.ToString(depot.DateDepot)));
-            pdfTableText.AddCell(new Phrase("PROBLEME", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
-            pdfTableText.AddCell(new Phrase(Convert.ToString(probleme.ToString())));
-
-            pdfCadre.AddCell(new Phrase(" "));
-
-
-            using (StreamReader sr = new StreamReader("progray.txt"))
+            if (cbxClient.Text == "" || cbxMateriel.Text == "" || cbxMarque.Text == "" || cbxModele.Text == "" || tbxProbleme.Text == "")
             {
-                string line;
-                // Read and display lines from the file until the end of
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
-                {
-                    pdfText.AddCell(line);
-                }
-            }
-            using (StreamReader sr = new StreamReader("tarif.txt"))
-            {
-                string line;
+                System.Windows.MessageBox.Show("Veuillez saisir les champs");
+                lblClient.Foreground = Brushes.Red;
+                lblMateriel.Foreground = Brushes.Red;
+                lblMarque.Foreground = Brushes.Red;
+                lblProbleme.Foreground = Brushes.Red;
                 
-                // Read and display lines from the file until the end of
-                // the file is reached.
-                while ((line = sr.ReadLine()) != null)
+            }
+            else
+            {
+                Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text, DateTime.Now.ToString("ddMMyyyyHHmm") + client.Nom);
+                depot = depotAdo.createDepot(d);
+
+                //QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
+                //QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(Convert.ToString(d.idDepot) + " " + d.Client.Nom + " " + d.Client.Prenom, QRCodeGenerator.ECCLevel.Q);
+                //QRCode qRCode = new QRCode(qRCodeData);
+                //System.Drawing.Bitmap qrCodeImage = qRCode.GetGraphic(20);
+
+                //image.Source = BitmapToImageSource(qrCodeImage);
+
+                BarcodeLib.Barcode barcodeAPI = new BarcodeLib.Barcode();
+
+                int imageWidth = 80;
+                int imageHeight = 30;
+                Color foreColor = Color.FromRgb(100, 100, 100);
+                Color backColor = Color.FromRgb(0, 0, 0);
+                string data = Convert.ToString(d.idDepot);
+
+                System.Drawing.Image barcodeImage = barcodeAPI.Encode(TYPE.CODE128, data, imageWidth, imageHeight);
+
+                barcodeImage.Save(@"C:\assets\barcode.png", ImageFormat.Png);
+
+
+
+                Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
+                problemeAdo.createProbleme(probleme);
+
+                PdfPTable pdfTableBlank = new PdfPTable(1);
+
+                PdfPTable pdfTable1 = new PdfPTable(1);
+                PdfPTable pdfTable2 = new PdfPTable(1);
+                PdfPTable pdfTable3 = new PdfPTable(2);
+                PdfPTable pdfTableText = new PdfPTable(2);
+                PdfPTable pdfTarif = new PdfPTable(1);
+                PdfPTable pdfCadre = new PdfPTable(1);
+                PdfPTable pdfImage = new PdfPTable(1);
+                PdfPTable pdfText = new PdfPTable(1);
+
+
+                System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
+
+                pdfTable1.WidthPercentage = 80;
+                pdfTable1.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+                pdfTable1.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
+                pdfTable1.DefaultCell.BorderWidth = 0;
+                pdfTable1.DefaultCell.Padding = 10;
+
+
+                pdfTable3.DefaultCell.Padding = 5;
+                pdfTable3.WidthPercentage = 80;
+                pdfTable3.DefaultCell.BorderWidth = 0.5f;
+
+                pdfTableText.DefaultCell.Padding = 5;
+                pdfTableText.WidthPercentage = 80;
+                pdfTableText.DefaultCell.BorderWidth = 0.5f;
+
+                pdfTarif.DefaultCell.Padding = 5;
+                pdfTarif.WidthPercentage = 80;
+                pdfTarif.DefaultCell.BorderWidth = 0.5f;
+                pdfTarif.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
+
+                pdfCadre.DefaultCell.Padding = 5;
+                pdfCadre.WidthPercentage = 80;
+                pdfCadre.DefaultCell.BorderWidth = 0.5f;
+                pdfCadre.DefaultCell.FixedHeight = 150f;
+
+                pdfText.DefaultCell.Padding = 5;
+                pdfText.WidthPercentage = 80;
+                pdfText.DefaultCell.BorderWidth = 0.5f;
+                pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
+
+                pdfText.DefaultCell.Padding = 5;
+                pdfText.WidthPercentage = 80;
+                pdfText.DefaultCell.BorderWidth = 0.5f;
+                pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
+
+                string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\test.png";
+                iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
+                jpg.ScaleToFit(250f, 150f);
+                jpg.Alignment = Element.ALIGN_CENTER;
+
+                string test = @"C:\assets\barcode.png";
+                iTextSharp.text.Image jpg2 = iTextSharp.text.Image.GetInstance(test);
+                jpg2.Alignment = Element.ALIGN_RIGHT;
+
+                Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
+                pdfTable1.AddCell(p1);
+
+                pdfTable3.AddCell(new Phrase("TITRE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Titre));
+                pdfTable3.AddCell(new Phrase("NOM CLIENT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Nom));
+                pdfTable3.AddCell(new Phrase("PRENOM CLIENT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Prenom));
+                pdfTable3.AddCell(new Phrase("ADRESSE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Adresse));
+                pdfTable3.AddCell(new Phrase("CODE POSTAL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Cp));
+                pdfTable3.AddCell(new Phrase("VILLE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Ville));
+                pdfTable3.AddCell(new Phrase("TELEPHONE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Telephone));
+                pdfTable3.AddCell(new Phrase("MOBILE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Mobile));
+                pdfTable3.AddCell(new Phrase("ADRESSE MAIL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.AdresseMail));
+                pdfTable3.AddCell(new Phrase("STATUT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTable3.AddCell(new Phrase(depot.Client.Statut));
+
+                pdfTableText.AddCell(new Phrase("MATERIEL", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTableText.AddCell(new Phrase(depot.Materiel.TypeMateriel));
+                pdfTableText.AddCell(new Phrase("MARQUE", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTableText.AddCell(new Phrase(depot.Modele.Marque.Nom + " - " + "Modèle : " + depot.Modele.Model));
+                pdfTableText.AddCell(new Phrase("DELAI", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTableText.AddCell(new Phrase(depot.Delai));
+                pdfTableText.AddCell(new Phrase("DATE DEPOT", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTableText.AddCell(new Phrase(Convert.ToString(depot.DateDepot)));
+                pdfTableText.AddCell(new Phrase("PROBLEME", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
+                pdfTableText.AddCell(new Phrase(Convert.ToString(probleme.ToString())));
+
+
+                pdfCadre.AddCell(new Phrase(" "));
+
+
+
+                using (StreamReader sr = new StreamReader("progray.txt"))
                 {
-                    pdfTarif.AddCell(line);
-                   
+                    string line;
+                    // Read and display lines from the file until the end of
+                    // the file is reached.
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        pdfText.AddCell(line);
+                    }
                 }
-            }
+                using (StreamReader sr = new StreamReader("tarif.txt"))
+                {
+                    string line;
 
-            string folderPath = "D:\\PDF\\";
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
+                    // Read and display lines from the file until the end of
+                    // the file is reached.
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        pdfTarif.AddCell(line);
 
-            int fileCount = Directory.GetFiles(@"D:\\PDF").Length;
-            string strFileName = "FicheSav" + " " + depot.Client.Nom + " " + depot.DateDepot.ToString("dd-MM-yyyy") + ".pdf";
+                    }
+                }
+
+                string folderPath = "D:\\PDF\\";
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                int fileCount = Directory.GetFiles(@"D:\\PDF").Length;
+                string strFileName = "FicheSav" + " " + depot.Client.Nom + " " + depot.DateDepot.ToString("dd-MM-yyyy") + ".pdf";
 
 
-            using (FileStream stream = new FileStream(folderPath + strFileName, FileMode.Create))
-            {
-                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-                PdfWriter.GetInstance(pdfDoc, stream);
-                pdfDoc.Open();
+                using (FileStream stream = new FileStream(folderPath + strFileName, FileMode.Create))
+                {
+                    //iTextSharp.text.pdf.BarcodeQRCode qrcode = new BarcodeQRCode(d.Client.Nom + " " + d.Client.Prenom, 75, 75, null);
+                    //iTextSharp.text.Image img1 = qrcode.GetImage();
+                    //img1.Alignment = Element.ALIGN_LEFT;
 
-                pdfDoc.Add(jpg);
-                pdfDoc.Add(pdfTable1);
-                pdfDoc.Add(new Paragraph("Informations client : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfTable2);
-                pdfDoc.Add(pdfTableBlank);
-                pdfDoc.Add(pdfTable3);
-                pdfDoc.Add(new Paragraph("Matériel déposé : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfTableText);
-                pdfDoc.Add(new Paragraph("Cadre réservé à l'entreprise : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfCadre);
-                pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.NewPage();
-                pdfDoc.Add(pdfText);
-                pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                pdfDoc.Add(pdfTarif);
-                pdfDoc.NewPage();
+                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+                    PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
 
-                pdfDoc.Close();
-                stream.Close();
+                    pdfDoc.Add(jpg);
+                    pdfDoc.Add(pdfTable1);
+                    pdfDoc.Add(new Paragraph("Numéro Identifiant PDF : " + d.NumIdentifiantPdf, FontFactory.GetFont("Times New Roman", 11, Font.BOLD)));
+                    //pdfDoc.Add(img1);
+                    pdfDoc.Add(new Paragraph("Informations client : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                    pdfDoc.Add(pdfTable2);
+                    pdfDoc.Add(pdfTableBlank);
+                    pdfDoc.Add(pdfTable3);
+                    pdfDoc.Add(new Paragraph("Matériel déposé : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                    pdfDoc.Add(pdfTableText);
+                    pdfDoc.Add(new Paragraph("Cadre réservé à l'entreprise : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                    pdfDoc.Add(pdfCadre);
+                    pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                    pdfDoc.Add(jpg2);
+                    pdfDoc.NewPage();
+                    pdfDoc.Add(pdfText);
+                    pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
+                    pdfDoc.Add(pdfTarif);
+                    
+                    
+                    pdfDoc.NewPage();
 
+                    pdfDoc.Close();
+                    stream.Close();
+
+                }
             }
         }
 
-        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.png *.bmp)|*.jpg; *.jpeg; *.gif; *.png *.bmp";
+            if(open.ShowDialog() == DialogResult.OK)
+            {
+                createImage(open.FileName);
+            }
+        }
+        private void createImage(string name)
+        {
+            Clipboard.SetImage(System.Drawing.Image.FromFile(name));
+            tbxProbleme.Paste();
+        }
+        //private ImageSource BitmapToImageSource(System.Drawing.Bitmap bitmap)
+        //{
+        //    using (MemoryStream memory = new MemoryStream())
+        //    {
+        //        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+        //        memory.Position = 0;
+        //        BitmapImage bitmapImage = new BitmapImage();
+        //        bitmapImage.BeginInit();
+        //        bitmapImage.StreamSource = memory;
+        //        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+        //        bitmapImage.EndInit();
+
+        //        return bitmapImage;
+        //    }
+        //}
+
+
+
+
+
     }
 }

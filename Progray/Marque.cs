@@ -10,11 +10,9 @@ namespace Progray
     {
         private int IDMARQUE;
         private String NOM;
-        private string modele;
 
         public int idMarque { get => IDMARQUE; set => IDMARQUE = value; }
         public string Nom { get => NOM; set => NOM = value; }
-        public string Modele { get => modele; set => modele = value; }
 
         public Marque(){ }
 
@@ -30,12 +28,6 @@ namespace Progray
         public Marque(int unId)
         {
             this.IDMARQUE = unId;
-        }
-        public Marque(int unId, string unNom, string unModele)
-        {
-            this.IDMARQUE = unId;
-            this.NOM = unNom;
-            this.modele = unModele;
         }
         public override string ToString()
         {

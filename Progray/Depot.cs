@@ -20,6 +20,7 @@ namespace Progray
         private string tache;
         private string numSerie;
         private string probleme;
+        private string numIdentifiantPdf;
 
 
         public int idDepot { get => IDDEPOT; set => IDDEPOT = value; }
@@ -32,7 +33,7 @@ namespace Progray
         public DateTime DateDepot { get => dateDepot; set => dateDepot = value; }
         public string Delai { get => delai; set => delai = value; }
         public string Tache { get => tache; set => tache = value; }
-        
+        public string NumIdentifiantPdf { get => numIdentifiantPdf; set => numIdentifiantPdf = value; }
 
         public Depot()
         {
@@ -51,7 +52,7 @@ namespace Progray
             
         }
         //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
-        public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
+        public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie, string unNum)
         {
             this.IDDEPOT = 0;
             this.modele = unModele;
@@ -60,6 +61,18 @@ namespace Progray
             this.dateDepot = DateTime.Now;
             this.delai = unDelai;
             this.numSerie = unNumSerie;
+            this.numIdentifiantPdf = unNum;
+
+        }
+        public Depot(Client unClient, Materiel unMateriel, string unDelai, string unNumSerie, string unNum)
+        {
+            this.IDDEPOT = 0;
+            this.client = unClient;
+            this.materiel = unMateriel;
+            this.dateDepot = DateTime.Now;
+            this.delai = unDelai;
+            this.numSerie = unNumSerie;
+            this.numIdentifiantPdf = unNum;
 
         }
         //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
@@ -76,7 +89,7 @@ namespace Progray
 
         }
         //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
-        public Depot(int unId, Modele unModele, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
+        public Depot(int unId, Modele unModele, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie, string unNum)
         {
             this.IDDEPOT = unId;
             this.modele = unModele;
@@ -88,6 +101,7 @@ namespace Progray
             this.probleme = unProbleme;
             this.tache = uneTache;
             this.numSerie = unNumSerie;
+            this.NumIdentifiantPdf = unNum;
 
 
         }
@@ -97,6 +111,11 @@ namespace Progray
             this.delai = unDelai;
             this.tache = uneTache;
 
+        }
+        public Depot(string unNum)
+        {
+            this.dateDepot = DateTime.Now;
+            this.numIdentifiantPdf = unNum;
         }
 
         public Client getClient()

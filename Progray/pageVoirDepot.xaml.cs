@@ -171,5 +171,23 @@ namespace Progray
             Itemlist.Filter = yourCostumFilter;
             dgDepotAll.ItemsSource = Itemlist;
         }
+
+        private void tbxRechercheNumSerie_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Depot)item).NumSerie.Contains(tbxRechercheNumSerie.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
+        }
+
+        private void tbxNumIdentifiant_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Depot)item).NumIdentifiantPdf.Contains(tbxNumIdentifiant.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
+        }
     }
 }

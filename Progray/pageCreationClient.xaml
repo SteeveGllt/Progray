@@ -9,9 +9,9 @@
       Title="pageCreationClient">
 
     <Grid>
-        <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="127,18,0,0" VerticalAlignment="Top" Width="84" FontWeight="Bold"/>
-        <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="319,13,0,0" VerticalAlignment="Top" Width="88" FontWeight="Bold"/>
-        <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="500,18,0,0" VerticalAlignment="Top" Width="102" FontWeight="Bold"/>
+        <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="128,13,0,0" VerticalAlignment="Top" Width="37" FontWeight="Bold"/>
+        <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="319,13,0,0" VerticalAlignment="Top" Width="37" FontWeight="Bold"/>
+        <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="501,13,0,0" VerticalAlignment="Top" Width="56" FontWeight="Bold"/>
         <TextBox x:Name="tbxNom" HorizontalAlignment="Left" Height="23" Margin="286,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="121"/>
         <TextBox x:Name="tbxPrenom" HorizontalAlignment="Left" Height="23" Margin="489,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114"/>
         <TextBox x:Name="tbxAdresse" HorizontalAlignment="Left" Height="27" Margin="229,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="252"/>
@@ -29,7 +29,7 @@
         <Rectangle Fill="#FFF5F5F4" HorizontalAlignment="Left" Height="366" Stroke="Black" VerticalAlignment="Top" Width="800" Panel.ZIndex="-2"/>
         <Label Content="Statut" HorizontalAlignment="Left" Margin="425,270,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Button Content="Créer" HorizontalAlignment="Left" Margin="627,330,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <ComboBox x:Name="cbxTitre" HorizontalAlignment="Left" Margin="109,55,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxTitre_SelectionChanged"/>
+        <ComboBox x:Name="cbxTitre" HorizontalAlignment="Left" Margin="109,54,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxTitre_SelectionChanged"/>
         <ComboBox x:Name="cbxStatut" HorizontalAlignment="Left" Margin="501,271,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbxStatut_SelectionChanged"/>
 
     </Grid>

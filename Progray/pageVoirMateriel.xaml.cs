@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -88,6 +89,15 @@ namespace Progray
 
             dgVoirMateriel.ItemsSource = null;
             dgVoirMateriel.ItemsSource = materielAdo.all();
+        }
+
+        private void tbxRecherche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var _itemSourceList = new CollectionViewSource() { Source = materielAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => ((Materiel)item).TypeMateriel.Contains(tbxRecherche.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgVoirMateriel.ItemsSource = Itemlist;
         }
     }
 }

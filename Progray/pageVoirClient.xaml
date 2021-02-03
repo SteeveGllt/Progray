@@ -9,12 +9,14 @@
       Title="pageVoirClient">
 
     <Grid x:Name="grid">
-        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="430" Margin="10,10,-69,0" VerticalAlignment="Top" Width="859" d:IsHidden="True">
-            <DataGrid x:Name="dgClientAll" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="743" SelectionChanged="dgClientAll_SelectionChanged" CanUserAddRows="False"/>
-            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="763,38,-58,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
-            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="763,100,-58,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="430" Margin="10,10,-69,0" VerticalAlignment="Top" Width="859">
+            <DataGrid x:Name="dgClientAll" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="758" SelectionChanged="dgClientAll_SelectionChanged" CanUserAddRows="False" Margin="0,74,0,0"/>
+            <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="797,111,-13,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
+            <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="797,173,-13,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
+            <Label Content="Recherche par nom :" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Width="128" FontWeight="Bold"/>
+            <TextBox x:Name="tbxClient" HorizontalAlignment="Left" Height="23" Margin="172,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" TextChanged="tbxClient_TextChanged"/>
         </Grid>
-        <Grid x:Name="gridModif" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="800" Margin="0,10,0,0" Panel.ZIndex="-1">
+        <Grid x:Name="gridModif" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="800" Margin="0,10,0,0" Panel.ZIndex="-1" d:IsHidden="True">
             <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="129,30,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" Height="26"/>
             <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="316,26,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold"/>
             <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="493,30,0,0" VerticalAlignment="Top" Width="100" FontWeight="Bold"/>

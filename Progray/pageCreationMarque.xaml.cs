@@ -29,10 +29,21 @@ namespace Progray
 
         private void btnCreerMarque_Click(object sender, RoutedEventArgs e)
         {
-            Marque m = new Marque(0, tbxMarque.Text);
+            if(tbxMarque.Text == "")
+            {
+                MessageBox.Show("Veuillez remplir les champs");
+                lblMarque.Foreground = Brushes.Red;
+            }
+            else
+            {
+                string oldString = tbxMarque.Text;
+                string newString = oldString[0].ToString().ToUpper() + oldString.Substring(1).ToLower();
+                Marque m = new Marque(0, newString);
             
-            //on ajoute la nouvelle marque en base de données
-           marque =  marqueAdo.createMarque(m);
+                 //on ajoute la nouvelle marque en base de données
+                 marque =  marqueAdo.createMarque(m);
+            }
+            
 
         }
     }
