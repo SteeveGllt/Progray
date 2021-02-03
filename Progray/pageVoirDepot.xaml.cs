@@ -139,6 +139,7 @@ namespace Progray
 
         private void tbxRecherche_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Permet d'actualiser le datagrid avec les données saisies
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Client.Nom.Contains(tbxRecherche.Text));
@@ -152,7 +153,7 @@ namespace Progray
         {
             Marque marque = (Marque)cbxMarque.SelectedItem;
 
-
+            //Permet d'actualiser le datagrid avec les données saisies
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Marque.Nom.Contains(marque.Nom));
@@ -164,7 +165,7 @@ namespace Progray
         {
             Materiel materiel = (Materiel)cbxMateriel.SelectedItem;
 
-
+            //Permet d'actualiser le datagrid avec les données saisies
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Materiel.TypeMateriel.Contains(materiel.TypeMateriel));
@@ -174,6 +175,7 @@ namespace Progray
 
         private void tbxRechercheNumSerie_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Permet d'actualiser le datagrid avec les données saisies
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).NumSerie.Contains(tbxRechercheNumSerie.Text));
@@ -183,9 +185,21 @@ namespace Progray
 
         private void tbxNumIdentifiant_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Permet d'actualiser le datagrid avec les données saisies
             var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).NumIdentifiantPdf.Contains(tbxNumIdentifiant.Text));
+            Itemlist.Filter = yourCostumFilter;
+            dgDepotAll.ItemsSource = Itemlist;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            //Permet d'actualiser le datagrid avec les données saisies
+            var _itemSourceList = new CollectionViewSource() { Source = depotAdo.all() };
+            ICollectionView Itemlist = _itemSourceList.View;
+            var yourCostumFilter = new Predicate<object>(item => Convert.ToString(((Depot)item).idDepot).Contains(tbxRechercheId.Text));
             Itemlist.Filter = yourCostumFilter;
             dgDepotAll.ItemsSource = Itemlist;
         }

@@ -29,13 +29,15 @@ namespace Progray
 
         private void btnCreerMarque_Click(object sender, RoutedEventArgs e)
         {
-            if(tbxMarque.Text == "")
+            //Erreur en cas de validation sans avoir rentré de marque
+            if (tbxMarque.Text == "")
             {
                 MessageBox.Show("Veuillez remplir les champs");
                 lblMarque.Foreground = Brushes.Red;
             }
             else
             {
+                //Permet de mettre la première lettre en majuscule
                 string oldString = tbxMarque.Text;
                 string newString = oldString[0].ToString().ToUpper() + oldString.Substring(1).ToLower();
                 Marque m = new Marque(0, newString);

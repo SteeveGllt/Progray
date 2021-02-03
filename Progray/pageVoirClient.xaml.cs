@@ -72,8 +72,6 @@ namespace Progray
 
             gridModif.Visibility = Visibility.Visible;
             
-
-
             Client client = (Client)dgClientAll.SelectedItem;
             idClient = client.idClient;
 
@@ -116,14 +114,7 @@ namespace Progray
             else if (dialogResult == DialogResult.No)
             {
 
-            }
-
-            
-
-
-
-            
-            
+            }     
         }
 
         private void tbxClient_TextChanged(object sender, TextChangedEventArgs e)

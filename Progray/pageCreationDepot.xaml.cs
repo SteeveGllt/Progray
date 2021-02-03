@@ -121,6 +121,7 @@ namespace Progray
             Client client = (Client)(cbxClient.SelectedItem);
             Materiel materiel = (Materiel)(cbxMateriel.SelectedItem);
 
+            //Erreur en cas de validation sans les champs suivants
             if (cbxClient.Text == "" || cbxMateriel.Text == "" || cbxMarque.Text == "" || cbxModele.Text == "" || tbxProbleme.Text == "")
             {
                 System.Windows.MessageBox.Show("Veuillez saisir les champs");
@@ -130,18 +131,22 @@ namespace Progray
                 lblProbleme.Foreground = Brushes.Red;
                 
             }
+            //Création du dépôt avec les données saisies
             else
             {
                 Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text, DateTime.Now.ToString("ddMMyyyyHHmm") + client.Nom);
                 depot = depotAdo.createDepot(d);
 
+                //Code pour générer un QRCode
+
                 //QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
                 //QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(Convert.ToString(d.idDepot) + " " + d.Client.Nom + " " + d.Client.Prenom, QRCodeGenerator.ECCLevel.Q);
                 //QRCode qRCode = new QRCode(qRCodeData);
                 //System.Drawing.Bitmap qrCodeImage = qRCode.GetGraphic(20);
-
                 //image.Source = BitmapToImageSource(qrCodeImage);
 
+
+                //Génération d'un code barre sous forme d'image avec l'ID du dépôt
                 BarcodeLib.Barcode barcodeAPI = new BarcodeLib.Barcode();
 
                 int imageWidth = 80;
@@ -149,18 +154,16 @@ namespace Progray
                 Color foreColor = Color.FromRgb(100, 100, 100);
                 Color backColor = Color.FromRgb(0, 0, 0);
                 string data = Convert.ToString(d.idDepot);
-
                 System.Drawing.Image barcodeImage = barcodeAPI.Encode(TYPE.CODE128, data, imageWidth, imageHeight);
-
-                barcodeImage.Save(@"C:\assets\barcode.png", ImageFormat.Png);
-
+                barcodeImage.Save("assets/barcode.png", ImageFormat.Png);
 
 
+                //Création du problème avec le dernier id de dépôt crée
                 Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
                 problemeAdo.createProbleme(probleme);
 
+               //Instanciation des tableaux du fichier PDF
                 PdfPTable pdfTableBlank = new PdfPTable(1);
-
                 PdfPTable pdfTable1 = new PdfPTable(1);
                 PdfPTable pdfTable2 = new PdfPTable(1);
                 PdfPTable pdfTable3 = new PdfPTable(2);
@@ -173,12 +176,13 @@ namespace Progray
 
                 System.Drawing.Font fontH1 = new System.Drawing.Font("Currier", 16);
 
+
+                //Paramétrage de la disposition des tableaux
                 pdfTable1.WidthPercentage = 80;
                 pdfTable1.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfTable1.DefaultCell.VerticalAlignment = Element.ALIGN_CENTER;
                 pdfTable1.DefaultCell.BorderWidth = 0;
                 pdfTable1.DefaultCell.Padding = 10;
-
 
                 pdfTable3.DefaultCell.Padding = 5;
                 pdfTable3.WidthPercentage = 80;
@@ -203,20 +207,17 @@ namespace Progray
                 pdfText.DefaultCell.BorderWidth = 0.5f;
                 pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
 
-                pdfText.DefaultCell.Padding = 5;
-                pdfText.WidthPercentage = 80;
-                pdfText.DefaultCell.BorderWidth = 0.5f;
-                pdfText.DefaultCell.BorderColor = new CMYKColor(0f, 0f, 0f, 0f);
-
-                string imageUrl = @"C:\Users\steev\source\repos\Progray\Progray\test.png";
+                //Recherche d'image
+                string imageUrl = "assets/banniere.png";
                 iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
                 jpg.ScaleToFit(250f, 150f);
                 jpg.Alignment = Element.ALIGN_CENTER;
 
-                string test = @"C:\assets\barcode.png";
+                string test = "assets/barcode.png";
                 iTextSharp.text.Image jpg2 = iTextSharp.text.Image.GetInstance(test);
                 jpg2.Alignment = Element.ALIGN_RIGHT;
 
+                //Ajoute les différentes données dans les cellules des tableaux
                 Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
                 pdfTable1.AddCell(p1);
 
@@ -252,11 +253,10 @@ namespace Progray
                 pdfTableText.AddCell(new Phrase("PROBLEME", FontFactory.GetFont("Times New Roman", 12, Font.BOLD)));
                 pdfTableText.AddCell(new Phrase(Convert.ToString(probleme.ToString())));
 
-
                 pdfCadre.AddCell(new Phrase(" "));
 
 
-
+                //Ecriture du texte dans les fichiers texte
                 using (StreamReader sr = new StreamReader("progray.txt"))
                 {
                     string line;
@@ -280,6 +280,7 @@ namespace Progray
                     }
                 }
 
+                //Création d'un répertoire pdf dans D:
                 string folderPath = "D:\\PDF\\";
                 if (!Directory.Exists(folderPath))
                 {
@@ -287,6 +288,7 @@ namespace Progray
                 }
 
                 int fileCount = Directory.GetFiles(@"D:\\PDF").Length;
+                //Le nom du fichier comprendra FicheSav + le nom et prénom du client et la date du jour
                 string strFileName = "FicheSav" + " " + depot.Client.Nom + " " + depot.DateDepot.ToString("dd-MM-yyyy") + ".pdf";
 
 
@@ -296,6 +298,7 @@ namespace Progray
                     //iTextSharp.text.Image img1 = qrcode.GetImage();
                     //img1.Alignment = Element.ALIGN_LEFT;
 
+                    //Création du fichier grâce au package itextsharp
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                     PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
@@ -317,11 +320,8 @@ namespace Progray
                     pdfDoc.NewPage();
                     pdfDoc.Add(pdfText);
                     pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                    pdfDoc.Add(pdfTarif);
-                    
-                    
+                    pdfDoc.Add(pdfTarif);                   
                     pdfDoc.NewPage();
-
                     pdfDoc.Close();
                     stream.Close();
 
@@ -329,21 +329,21 @@ namespace Progray
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog open = new OpenFileDialog();
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog open = new OpenFileDialog();
 
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.png *.bmp)|*.jpg; *.jpeg; *.gif; *.png *.bmp";
-            if(open.ShowDialog() == DialogResult.OK)
-            {
-                createImage(open.FileName);
-            }
-        }
-        private void createImage(string name)
-        {
-            Clipboard.SetImage(System.Drawing.Image.FromFile(name));
-            tbxProbleme.Paste();
-        }
+        //    open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.png *.bmp)|*.jpg; *.jpeg; *.gif; *.png *.bmp";
+        //    if(open.ShowDialog() == DialogResult.OK)
+        //    {
+        //        createImage(open.FileName);
+        //    }
+        //}
+        //private void createImage(string name)
+        //{
+        //    Clipboard.SetImage(System.Drawing.Image.FromFile(name));
+        //    tbxProbleme.Paste();
+        //}
         //private ImageSource BitmapToImageSource(System.Drawing.Bitmap bitmap)
         //{
         //    using (MemoryStream memory = new MemoryStream())
