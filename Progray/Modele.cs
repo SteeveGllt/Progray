@@ -15,8 +15,9 @@ namespace Progray
         private int idMarque;
 
         public int Code { get => code; set => code = value; }
-        public string Model { get => modele; set => modele = value; }
         public Marque Marque { get => marque; set => marque = value; }
+        public string Model { get => modele; set => modele = value; }
+        
         public Modele() { }
         public Modele(int unCode, string unModele, Marque uneMarque)
         {
@@ -24,12 +25,6 @@ namespace Progray
             this.modele = unModele;
             this.marque = uneMarque;
         }
-        //public Modele(int unCode, string unModele, int uneMarque)
-        //{
-        //    this.code = unCode;
-        //    this.modele = unModele;
-        //    this.idMarque = uneMarque;
-        //}
         public override string ToString()
         {
             return modele;

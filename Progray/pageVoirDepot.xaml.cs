@@ -52,10 +52,6 @@ namespace Progray
             btnModifier.IsEnabled = false;
             btnSupprimer.IsEnabled = false;
 
-            
-
-            
-
         }
 
         private void dgDepotAll_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -70,9 +66,7 @@ namespace Progray
             {
                 btnModifier.IsEnabled = false;
                 btnSupprimer.IsEnabled = false;
-            }
-
-            
+            }         
         }
 
 
@@ -80,8 +74,6 @@ namespace Progray
         {
              string d = (string)(cbxDelai.SelectedItem);
         }
-
-        
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
@@ -97,15 +89,11 @@ namespace Progray
             tbxNumSerie.Text = depot.NumSerie;
             tbxTache.Text = depot.Tache;
 
-            
-
         }
         private void btnValide_Click(object sender, RoutedEventArgs e)
         {
             gridModifier.Visibility = Visibility.Hidden;
             grid.Visibility = Visibility.Visible;
-
-
 
             depotAdo.update(cbxDelai.Text, idDepot);
             depotAdo.updateTache(tbxNumSerie.Text, tbxTache.Text, idDepot);
@@ -132,8 +120,7 @@ namespace Progray
             else if (dialogResult == DialogResult.No)
             {
 
-            }
-            
+            }            
 
         }
 
@@ -144,9 +131,7 @@ namespace Progray
             ICollectionView Itemlist = _itemSourceList.View;
             var yourCostumFilter = new Predicate<object>(item => ((Depot)item).Client.Nom.Contains(tbxRecherche.Text));
             Itemlist.Filter = yourCostumFilter;
-            dgDepotAll.ItemsSource = Itemlist;
-
-          
+            dgDepotAll.ItemsSource = Itemlist;          
         }
 
         private void cbxMarque_SelectionChanged(object sender, SelectionChangedEventArgs e)

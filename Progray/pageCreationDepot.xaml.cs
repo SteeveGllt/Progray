@@ -317,7 +317,7 @@ namespace Progray
                     pdfDoc.Add(pdfCadre);
                     pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                     pdfDoc.Add(jpg2);
-                    pdfDoc.NewPage();
+                    //pdfDoc.NewPage();
                     pdfDoc.Add(pdfText);
                     pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                     pdfDoc.Add(pdfTarif);                   

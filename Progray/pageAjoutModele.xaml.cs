@@ -57,5 +57,13 @@ namespace Progray
             }
             
         }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Button_Click(null, null);
+            }
+        }
     }
 }

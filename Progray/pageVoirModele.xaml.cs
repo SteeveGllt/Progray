@@ -57,24 +57,17 @@ namespace Progray
             gridModifier.Visibility = Visibility.Hidden;
 
             dgModele.ItemsSource = null;
-            dgModele.ItemsSource = modeleAdo.all();
-
-            
+            dgModele.ItemsSource = modeleAdo.all();         
 
         }
-
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
             gridMain.Visibility = Visibility.Hidden;
             gridModifier.Visibility = Visibility.Visible;
 
-
-
-
             Modele mod = (Modele)dgModele.SelectedItem;
             code = mod.Code;
-
 
             tbxModele.Text = mod.Model;
            
@@ -98,6 +91,14 @@ namespace Progray
             }
 
         
+        }
+
+        private void gridModifier_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Button_Click(null, null);
+            }
         }
     }
 }

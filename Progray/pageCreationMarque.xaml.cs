@@ -44,9 +44,15 @@ namespace Progray
             
                  //on ajoute la nouvelle marque en base de données
                  marque =  marqueAdo.createMarque(m);
-            }
-            
+            } 
+        }
 
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                btnCreerMarque_Click(null, null);
+            }
         }
     }
 }

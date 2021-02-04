@@ -99,5 +99,13 @@ namespace Progray
             Itemlist.Filter = yourCostumFilter;
             dgVoirMateriel.ItemsSource = Itemlist;
         }
+
+        private void gridMateriel_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                btnValider_Click(null, null);
+            }
+        }
     }
 }

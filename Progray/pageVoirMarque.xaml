@@ -9,7 +9,7 @@
       Title="pageVoirMarque">
 
     <Grid>
-        <Grid x:Name="gridMarque" HorizontalAlignment="Left" Height="182" Margin="54,10,0,0" VerticalAlignment="Top" Width="712" Panel.ZIndex="-1" d:IsHidden="True">
+        <Grid x:Name="gridMarque" HorizontalAlignment="Left" Height="182" Margin="54,10,0,0" VerticalAlignment="Top" Width="712" Panel.ZIndex="-1" d:IsHidden="True" KeyDown="gridMarque_KeyDown">
             <Label Content="Nom de la marque :" HorizontalAlignment="Left" Margin="112,30,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNomMarque" HorizontalAlignment="Left" Height="23" Margin="249,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Content="Valider" HorizontalAlignment="Left" Margin="362,126,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>

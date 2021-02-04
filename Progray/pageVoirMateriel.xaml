@@ -9,7 +9,7 @@
       Title="pageVoirMateriel">
 
     <Grid>
-        <Grid x:Name="gridMateriel" HorizontalAlignment="Left" Height="120" Margin="206,27,0,0" VerticalAlignment="Top" Width="320" Panel.ZIndex="-1" d:IsHidden="True">
+        <Grid x:Name="gridMateriel" HorizontalAlignment="Left" Height="120" Margin="206,27,0,0" VerticalAlignment="Top" Width="320" Panel.ZIndex="-1" d:IsHidden="True" KeyDown="gridMateriel_KeyDown">
             <Label Content="Type de matériel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="tbxType" HorizontalAlignment="Left" Height="23" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="btnValider" Content="Valider" HorizontalAlignment="Left" Margin="232,84,0,0" VerticalAlignment="Top" Width="75" Click="btnValider_Click"/>

@@ -16,7 +16,7 @@
             <Label Content="Recherche par nom :" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Width="128" FontWeight="Bold"/>
             <TextBox x:Name="tbxClient" HorizontalAlignment="Left" Height="23" Margin="172,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="142" TextChanged="tbxClient_TextChanged"/>
         </Grid>
-        <Grid x:Name="gridModif" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="800" Margin="0,10,0,0" Panel.ZIndex="-1" d:IsHidden="True">
+        <Grid x:Name="gridModif" HorizontalAlignment="Left" Height="430" VerticalAlignment="Top" Width="800" Margin="0,10,0,0" Panel.ZIndex="-1" d:IsHidden="True" KeyDown="gridModif_KeyDown">
             <Label x:Name="lblTitre" Content="Titre" HorizontalAlignment="Left" Margin="129,30,0,0" VerticalAlignment="Top" Width="82" FontWeight="Bold" Height="26"/>
             <Label x:Name="lblNom" Content="Nom" HorizontalAlignment="Left" Height="23" Margin="316,26,0,0" VerticalAlignment="Top" Width="86" FontWeight="Bold"/>
             <Label x:Name="lblPrenom" Content="Prénom" HorizontalAlignment="Left" Height="26" Margin="493,30,0,0" VerticalAlignment="Top" Width="100" FontWeight="Bold"/>

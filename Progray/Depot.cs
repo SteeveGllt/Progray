@@ -40,7 +40,6 @@ namespace Progray
             
 
         }
-        //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai)
         public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai)
         {
             this.IDDEPOT = 0;
@@ -51,7 +50,6 @@ namespace Progray
             this.delai = unDelai;
             
         }
-        //public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie)
         public Depot(Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unNumSerie, string unNum)
         {
             this.IDDEPOT = 0;
@@ -75,7 +73,6 @@ namespace Progray
             this.numIdentifiantPdf = unNum;
 
         }
-        //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
         public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme)
         {
             this.IDDEPOT = unId;
@@ -88,7 +85,6 @@ namespace Progray
             
 
         }
-        //public Depot(int unId, Modele unModele, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie)
         public Depot(int unId, Modele unModele, Marque uneMarque, Client unClient, Materiel unMateriel, string unDelai, string unProbleme, string uneTache, string unNumSerie, string unNum)
         {
             this.IDDEPOT = unId;

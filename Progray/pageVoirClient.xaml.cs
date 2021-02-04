@@ -59,11 +59,7 @@ namespace Progray
                 btnSupprimer.IsEnabled = false;
             }
          
-                Client c = (Client)(dgClientAll.SelectedItem);
-            
-            
-         
-            
+                Client c = (Client)(dgClientAll.SelectedItem);           
         }
 
         private void btnModifier_Click(object sender, RoutedEventArgs e)
@@ -124,6 +120,14 @@ namespace Progray
             var yourCostumFilter = new Predicate<object>(item => ((Client)item).Nom.Contains(tbxClient.Text));
             Itemlist.Filter = yourCostumFilter;
             dgClientAll.ItemsSource = Itemlist;
+        }
+
+        private void gridModif_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Button_Click(null, null);
+            }
         }
     }
 }

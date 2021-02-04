@@ -60,9 +60,7 @@ namespace Progray
             idMarque = marque.idMarque;
             
 
-            tbxNomMarque.Text = marque.Nom;
-
-            
+            tbxNomMarque.Text = marque.Nom;        
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -78,9 +76,6 @@ namespace Progray
         private void btnSupprimer_Click(object sender, RoutedEventArgs e)
         {
            
-
-            
-
             DialogResult dialogResult = MessageBox.Show("Voulez-vous vraiment supprimer ?", "Warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -104,6 +99,14 @@ namespace Progray
             var yourCostumFilter = new Predicate<object>(item => ((Marque)item).Nom.Contains(tbxRecherche.Text));
             Itemlist.Filter = yourCostumFilter;
             dgVoirMarque.ItemsSource = Itemlist;
+        }
+
+        private void gridMarque_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Button_Click(null, null);
+            }
         }
     }
 }

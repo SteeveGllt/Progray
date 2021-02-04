@@ -9,7 +9,7 @@
       Title="pageVoirDepot" Width="1058">
 
     <Grid>
-        <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1" d:IsHidden="True">
+        <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="249*"/>
                 <RowDefinition Height="181*"/>
@@ -17,14 +17,14 @@
             <Label Content="Délai" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="62" FontWeight="Bold" Height="23" Grid.Row="1"/>
             <Button x:Name="btnValide" Content="Modifier" HorizontalAlignment="Left" Margin="651,152,0,0" VerticalAlignment="Top" Width="96" Height="19" Click="btnValide_Click" RenderTransformOrigin="-0.479,-0.211" Grid.Row="1"/>
             <ComboBox x:Name="cbxDelai" HorizontalAlignment="Left" Margin="77,89,0,0" VerticalAlignment="Top" Width="275" Height="23" SelectionChanged="cbxDelai_SelectionChanged" Grid.Row="1"/>
-            <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="130" Margin="116,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="454"/>
+            <TextBox x:Name="tbxProbleme" HorizontalAlignment="Left" Height="130" Margin="116,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="454" AcceptsReturn="True"/>
             <Label Content="Problème" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="80" FontWeight="Bold"/>
             <Label Content="Tâche(s) :" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-            <TextBox x:Name="tbxTache" HorizontalAlignment="Left" Height="129" Margin="116,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="454" Grid.RowSpan="2"/>
+            <TextBox x:Name="tbxTache" HorizontalAlignment="Left" Height="129" Margin="116,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="454" Grid.RowSpan="2" AcceptsReturn="True"/>
             <Label Content="N° Série :" HorizontalAlignment="Left" Margin="373,84,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxNumSerie" HorizontalAlignment="Left" Height="23" Margin="450,84,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="1038">
+        <Grid x:Name="grid" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="1038" d:IsHidden="True">
             <DataGrid x:Name="dgDepotAll" HorizontalAlignment="Left" Height="308" Margin="10,107,0,-118" VerticalAlignment="Top" Width="565" SelectionChanged="dgDepotAll_SelectionChanged" CanUserAddRows="False"/>
             <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="640,156,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
             <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="640,217,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>
