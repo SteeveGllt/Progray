@@ -9,8 +9,16 @@
       Title="pageCreationMarque">
 
     <Grid KeyDown="Grid_KeyDown">
-        <Label x:Name="lblMarque" Content="Marque" HorizontalAlignment="Left" Margin="133,38,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold"/>
-        <TextBox x:Name="tbxMarque" HorizontalAlignment="Left" Height="23" Margin="225,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnCreerMarque" Content="Créer" HorizontalAlignment="Left" Margin="365,121,0,0" VerticalAlignment="Top" Width="75" Click="btnCreerMarque_Click"/>
+        <Label x:Name="lblMarque" Content="Marque" HorizontalAlignment="Left" Margin="130,35,0,0" VerticalAlignment="Top" Width="76" FontWeight="Bold"/>
+        <TextBox x:Name="tbxMarque" HorizontalAlignment="Left" Height="23" Margin="220,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnCreerMarque" Content="Créer" HorizontalAlignment="Left" Margin="249,80,0,0" VerticalAlignment="Top" Width="75" Click="btnCreerMarque_Click"/>
+        <Button x:Name="btnAjoutMod" Content="Ajouter un modèle" HorizontalAlignment="Left" Margin="424,41,0,0" VerticalAlignment="Top" Width="112" Panel.ZIndex="5" Click="btnAjoutMod_Click"/>
+        <Grid x:Name="gridModele" HorizontalAlignment="Left" Height="258" Margin="45,159,0,0" VerticalAlignment="Top" Width="491">
+            <Label x:Name="lblMarque_Copy" Content="Selectionner la marque :" HorizontalAlignment="Left" Margin="10,26,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26"/>
+            <ComboBox x:Name="cbxMarque" HorizontalAlignment="Left" Margin="197,26,0,0" VerticalAlignment="Top" Width="129" SelectionChanged="cbxMarque_SelectionChanged" Height="22"/>
+            <Label x:Name="lblModele" Content="Insérer le modèle :" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26"/>
+            <TextBox x:Name="tbxModele" HorizontalAlignment="Left" Height="23" Margin="197,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Content="Ajouter" HorizontalAlignment="Left" Margin="338,208,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Height="20"/>
+        </Grid>
     </Grid>
 </Page>

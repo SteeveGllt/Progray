@@ -9,12 +9,12 @@
       Title="pageVoirModele">
 
     <Grid>
-        <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1" d:IsHidden="True" KeyDown="gridModifier_KeyDown">
+        <Grid x:Name="gridModifier" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" Panel.ZIndex="-1" KeyDown="gridModifier_KeyDown">
             <Label Content="Modèle :" HorizontalAlignment="Left" Margin="159,94,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBox x:Name="tbxModele" HorizontalAlignment="Left" Height="23" Margin="250,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Content="Modifier" HorizontalAlignment="Left" Margin="344,189,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         </Grid>
-        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+        <Grid x:Name="gridMain" HorizontalAlignment="Left" Height="430" Margin="10,10,0,0" VerticalAlignment="Top" Width="780" d:IsHidden="True">
             <DataGrid x:Name="dgModele" HorizontalAlignment="Left" Height="162" Margin="80,25,0,0" VerticalAlignment="Top" Width="322" SelectionChanged="dgModele_SelectionChanged" CanUserAddRows="False"/>
             <Button x:Name="btnModifier" Content="Modifier" HorizontalAlignment="Left" Margin="564,63,0,0" VerticalAlignment="Top" Width="75" Click="btnModifier_Click"/>
             <Button x:Name="btnSupprimer" Content="Supprimer" HorizontalAlignment="Left" Margin="564,132,0,0" VerticalAlignment="Top" Width="75" Click="btnSupprimer_Click"/>

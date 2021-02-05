@@ -137,26 +137,6 @@ namespace Progray
                 Depot d = new Depot(modele, client, materiel, cbxDelai.Text, tbxNumSerie.Text, DateTime.Now.ToString("ddMMyyyyHHmm") + client.Nom);
                 depot = depotAdo.createDepot(d);
 
-                //Code pour générer un QRCode
-
-                //QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
-                //QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(Convert.ToString(d.idDepot) + " " + d.Client.Nom + " " + d.Client.Prenom, QRCodeGenerator.ECCLevel.Q);
-                //QRCode qRCode = new QRCode(qRCodeData);
-                //System.Drawing.Bitmap qrCodeImage = qRCode.GetGraphic(20);
-                //image.Source = BitmapToImageSource(qrCodeImage);
-
-
-                //Génération d'un code barre sous forme d'image avec l'ID du dépôt
-                BarcodeLib.Barcode barcodeAPI = new BarcodeLib.Barcode();
-
-                int imageWidth = 80;
-                int imageHeight = 30;
-                Color foreColor = Color.FromRgb(100, 100, 100);
-                Color backColor = Color.FromRgb(0, 0, 0);
-                string data = Convert.ToString(d.idDepot);
-                System.Drawing.Image barcodeImage = barcodeAPI.Encode(TYPE.CODE128, data, imageWidth, imageHeight);
-                barcodeImage.Save("assets/barcode.png", ImageFormat.Png);
-
 
                 //Création du problème avec le dernier id de dépôt crée
                 Probleme probleme = new Probleme(0, depot, tbxProbleme.Text);
@@ -212,10 +192,6 @@ namespace Progray
                 iTextSharp.text.Image jpg = iTextSharp.text.Image.GetInstance(imageUrl);
                 jpg.ScaleToFit(250f, 150f);
                 jpg.Alignment = Element.ALIGN_CENTER;
-
-                string test = "assets/barcode.png";
-                iTextSharp.text.Image jpg2 = iTextSharp.text.Image.GetInstance(test);
-                jpg2.Alignment = Element.ALIGN_RIGHT;
 
                 //Ajoute les différentes données dans les cellules des tableaux
                 Phrase p1 = new Phrase("FICHE SAV", FontFactory.GetFont("Times New Roman", 15, Font.BOLD));
@@ -279,25 +255,22 @@ namespace Progray
 
                     }
                 }
+                string test = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-                //Création d'un répertoire pdf dans D:
-                string folderPath = "D:\\PDF\\";
+                //Création d'un répertoire pdf
+                string folderPath = test + "\\Documents\\FichePDF\\";
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
                 }
 
-                int fileCount = Directory.GetFiles(@"D:\\PDF").Length;
                 //Le nom du fichier comprendra FicheSav + le nom et prénom du client et la date du jour
                 string strFileName = "FicheSav" + " " + depot.Client.Nom + " " + depot.DateDepot.ToString("dd-MM-yyyy") + ".pdf";
 
 
                 using (FileStream stream = new FileStream(folderPath + strFileName, FileMode.Create))
                 {
-                    //iTextSharp.text.pdf.BarcodeQRCode qrcode = new BarcodeQRCode(d.Client.Nom + " " + d.Client.Prenom, 75, 75, null);
-                    //iTextSharp.text.Image img1 = qrcode.GetImage();
-                    //img1.Alignment = Element.ALIGN_LEFT;
-
+                   
                     //Création du fichier grâce au package itextsharp
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                     PdfWriter.GetInstance(pdfDoc, stream);
@@ -316,8 +289,7 @@ namespace Progray
                     pdfDoc.Add(new Paragraph("Cadre réservé à l'entreprise : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                     pdfDoc.Add(pdfCadre);
                     pdfDoc.Add(new Paragraph("Signature du client  : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
-                    pdfDoc.Add(jpg2);
-                    //pdfDoc.NewPage();
+                    pdfDoc.NewPage();
                     pdfDoc.Add(pdfText);
                     pdfDoc.Add(new Paragraph("Tarif : " + "\n" + " ", FontFactory.GetFont("Times New Roman", 14, Font.BOLD)));
                     pdfDoc.Add(pdfTarif);                   
@@ -328,41 +300,5 @@ namespace Progray
                 }
             }
         }
-
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    OpenFileDialog open = new OpenFileDialog();
-
-        //    open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.png *.bmp)|*.jpg; *.jpeg; *.gif; *.png *.bmp";
-        //    if(open.ShowDialog() == DialogResult.OK)
-        //    {
-        //        createImage(open.FileName);
-        //    }
-        //}
-        //private void createImage(string name)
-        //{
-        //    Clipboard.SetImage(System.Drawing.Image.FromFile(name));
-        //    tbxProbleme.Paste();
-        //}
-        //private ImageSource BitmapToImageSource(System.Drawing.Bitmap bitmap)
-        //{
-        //    using (MemoryStream memory = new MemoryStream())
-        //    {
-        //        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-        //        memory.Position = 0;
-        //        BitmapImage bitmapImage = new BitmapImage();
-        //        bitmapImage.BeginInit();
-        //        bitmapImage.StreamSource = memory;
-        //        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-        //        bitmapImage.EndInit();
-
-        //        return bitmapImage;
-        //    }
-        //}
-
-
-
-
-
     }
 }

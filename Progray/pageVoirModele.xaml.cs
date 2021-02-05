@@ -23,7 +23,6 @@ namespace Progray
     public partial class pageVoirModele : Page
     {
         int code = 0;
-        Frame frame;
         public pageVoirModele()
         {
             InitializeComponent();

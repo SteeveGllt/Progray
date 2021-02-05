@@ -82,11 +82,6 @@ namespace Progray
             frame.Content = new pageVoirModele();
         }
 
-        private void MenuItem_Click_9(object sender, RoutedEventArgs e)
-        {
-            frame.Content = new pageAjoutModele();
-        }
-
 
     }
 }

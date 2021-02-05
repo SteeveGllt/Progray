@@ -63,7 +63,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BarcodeStandard, Version=2.2.10.0, Culture=neutral, processorArchitecture=MSIL">
@@ -188,10 +188,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pageAjoutModele.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="pageCreationClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -236,9 +232,6 @@
     <Compile Include="materielAdo.cs" />
     <Compile Include="Modele.cs" />
     <Compile Include="modeleAdo.cs" />
-    <Compile Include="pageAjoutModele.xaml.cs">
-      <DependentUpon>pageAjoutModele.xaml</DependentUpon>
-    </Compile>
     <Compile Include="pageCreationClient.xaml.cs">
       <DependentUpon>pageCreationClient.xaml</DependentUpon>
     </Compile>

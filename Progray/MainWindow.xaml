@@ -25,7 +25,6 @@
                 <MenuItem Header="Voir toutes les marques" HorizontalAlignment="Left" Height="75" Width="295" Click="MenuItem_Click_4"/>
                 <MenuItem Header="Créer une marque" HorizontalAlignment="Left" Height="75" Width="295" Click="MenuItem_Click_5"/>
                 <MenuItem Header="Voir les modèles" HorizontalAlignment="Left" Height="76" Width="295" Click="MenuItem_Click_8"/>
-                <MenuItem Header="Ajouter un modèle" HorizontalAlignment="Left" Height="100" Width="295" Click="MenuItem_Click_9"/>
             </MenuItem>
             <MenuItem x:Name="gestiondesdepots" Header="Gestion des dépôts" Height="57" Width="341" HorizontalAlignment="Center" FontSize="18">
                 <MenuItem Header="Voir tous les dépôts" HorizontalAlignment="Left" Height="75" Width="296" Click="MenuItem_Click_7"/>
